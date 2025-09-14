@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: admin    # Логин для доступа
+      MINIO_ROOT_PASSWORD: password  # Пароль для доступа (смените на свой!)
+    ports:
+      - "9000:9000"  # API порт (для клиентов)
+      - "9001:9001"  # Web UI порт (браузер)
+    volumes:
+      - minio_data:/data             # Монтируем том для данных
+    command: server /data --console-address ":9001"  # Запускаем сервер с веб-интерфейсом на порту 9001
+
+volumes:
+  minio_data:  # Именованный том Docker для хранения данных (управляется Docker'ом)
