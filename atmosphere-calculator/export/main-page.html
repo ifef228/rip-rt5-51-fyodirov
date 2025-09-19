@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtmosphericTempCalc - Главная страница</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-1rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        /* Яндекс Маркет стили */
+        .gas_page {
+            background-color: #f8f8f8;
+            min-height: 100vh;
+        }
+
+        .gas_card {
+            background: #ffffff;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .gas_card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .gas_btn {
+            background: #ff6900;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .gas_btn:hover {
+            background: #e55a00;
+            transform: translateY(-1px);
+        }
+
+        .gas_btn_secondary {
+            background: #ffffff;
+            color: #ff6900;
+            border: 1px solid #ff6900;
+        }
+
+        .gas_btn_secondary:hover {
+            background: #fff5f0;
+        }
+
+        .gas_header {
+            background: #ffffff;
+            border-bottom: 1px solid #e6e6e6;
+        }
+
+        .gas_search {
+            background: #ffffff;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+        }
+
+        .gas_search:focus {
+            border-color: #ff6900;
+            box-shadow: 0 0 0 2px rgba(255, 105, 0, 0.1);
+        }
+
+        .gas_cart {
+            background: #ff6900;
+            color: #ffffff;
+        }
+
+        .gas_cart:hover {
+            background: #e55a00;
+        }
+
+        .gas_text_primary {
+            color: #000000;
+        }
+
+        .gas_text_secondary {
+            color: #666666;
+        }
+
+        .gas_text_muted {
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="gas_page" data-model-id="14:69">
+        <!-- Header -->
+        <header class="gas_header w-full h-[164px] translate-y-[-1rem] animate-fade-in opacity-0">
+            <div class="container mx-auto px-8 py-8 flex items-center gap-4">
+                <h1 class="text-4xl font-bold gas_text_primary tracking-[-0.70px] font-['Inter',Helvetica]">
+                    AtmosphericTempCalc
+                </h1>
+                <img
+                    class="w-[110px] h-[110px] object-cover"
+                    alt="AtmosphereTemp Logo"
+                    src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-4.png"
+                />
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="w-full py-8 translate-y-[-1rem] animate-fade-in opacity-0" style="--animation-delay: 200ms;">
+            <div class="container mx-auto px-8">
+                <div class="flex justify-center">
+                    <div class="flex items-center gap-4 max-w-md w-full">
+                        <div class="flex-1 h-[60px] gas_search">
+                            <input
+                                class="w-full h-full bg-transparent border-0 px-4 placeholder:gas_text_muted placeholder:text-sm"
+                                placeholder="Поиск атмосферного газа"
+                            />
+                        </div>
+                        <button class="w-[60px] h-[60px] gas_btn flex items-center justify-center">
+                            <span class="text-2xl">🔍</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Atmospheric Gases Temperature Calculation Grid -->
+        <main class="w-full py-8">
+            <div class="container mx-auto px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                    <!-- CO₂ Card -->
+                    <div class="gas_card relative w-full h-[250px] translate-y-[-1rem] animate-fade-in opacity-0 cursor-pointer" style="animation-delay: 400ms;">
+                        <div class="relative w-full h-full p-6 flex items-center gap-6">
+                            <!-- Image Section -->
+                            <div class="flex-shrink-0">
+                                <img
+                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    alt="CO₂ (Углекислый газ)"
+                                    src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-5.png"
+                                />
+                            </div>
+
+                            <!-- Content Section -->
+                            <div class="flex-1 flex flex-col justify-center gap-3">
+                                <h3 class="text-2xl font-semibold gas_text_primary leading-tight">
+                                    CO₂ (Углекислый газ)
+                                </h3>
+                                <div class="space-y-1">
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Концентрация:</span> 0.04%
+                                    </p>
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Температура:</span> 15°C
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Button Section -->
+                            <div class="flex-shrink-0">
+                                <button class="gas_btn w-[120px] h-[50px]">
+                                    <span class="text-xs font-medium text-center leading-tight">
+                                        в корзину
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- O₂ Card -->
+                    <div class="gas_card relative w-full h-[250px] translate-y-[-1rem] animate-fade-in opacity-0 cursor-pointer" style="animation-delay: 600ms;">
+                        <div class="relative w-full h-full p-6 flex items-center gap-6">
+                            <!-- Image Section -->
+                            <div class="flex-shrink-0">
+                                <img
+                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    alt="O₂ (Кислород)"
+                                    src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-12.png"
+                                />
+                            </div>
+
+                            <!-- Content Section -->
+                            <div class="flex-1 flex flex-col justify-center gap-3">
+                                <h3 class="text-2xl font-semibold gas_text_primary leading-tight">
+                                    O₂ (Кислород)
+                                </h3>
+                                <div class="space-y-1">
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Концентрация:</span> 20.95%
+                                    </p>
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Температура:</span> 15°C
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Button Section -->
+                            <div class="flex-shrink-0">
+                                <button class="gas_btn w-[120px] h-[50px]">
+                                    <span class="text-xs font-medium text-center leading-tight">
+                                        в корзину
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ar Card -->
+                    <div class="gas_card relative w-full h-[250px] translate-y-[-1rem] animate-fade-in opacity-0 cursor-pointer" style="animation-delay: 800ms;">
+                        <div class="relative w-full h-full p-6 flex items-center gap-6">
+                            <!-- Image Section -->
+                            <div class="flex-shrink-0">
+                                <img
+                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    alt="Ar (Аргон)"
+                                    src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-13.png"
+                                />
+                            </div>
+
+                            <!-- Content Section -->
+                            <div class="flex-1 flex flex-col justify-center gap-3">
+                                <h3 class="text-2xl font-semibold gas_text_primary leading-tight">
+                                    Ar (Аргон)
+                                </h3>
+                                <div class="space-y-1">
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Концентрация:</span> 0.93%
+                                    </p>
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Температура:</span> 15°C
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Button Section -->
+                            <div class="flex-shrink-0">
+                                <button class="gas_btn w-[120px] h-[50px]">
+                                    <span class="text-xs font-medium text-center leading-tight">
+                                        в корзину
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- N₂ Card -->
+                    <div class="gas_card relative w-full h-[250px] translate-y-[-1rem] animate-fade-in opacity-0 cursor-pointer" style="animation-delay: 1000ms;">
+                        <div class="relative w-full h-full p-6 flex items-center gap-6">
+                            <!-- Image Section -->
+                            <div class="flex-shrink-0">
+                                <img
+                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    alt="N₂ (Азот)"
+                                    src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-14.png"
+                                />
+                            </div>
+
+                            <!-- Content Section -->
+                            <div class="flex-1 flex flex-col justify-center gap-3">
+                                <h3 class="text-2xl font-semibold gas_text_primary leading-tight">
+                                    N₂ (Азот)
+                                </h3>
+                                <div class="space-y-1">
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Концентрация:</span> 78.08%
+                                    </p>
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Температура:</span> 15°C
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Button Section -->
+                            <div class="flex-shrink-0">
+                                <button class="gas_btn w-[120px] h-[50px]">
+                                    <span class="text-xs font-medium text-center leading-tight">
+                                        в корзину
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- H₂O Card -->
+                    <div class="gas_card relative w-full h-[250px] translate-y-[-1rem] animate-fade-in opacity-0 cursor-pointer" style="animation-delay: 1200ms;">
+                        <div class="relative w-full h-full p-6 flex items-center gap-6">
+                            <!-- Image Section -->
+                            <div class="flex-shrink-0">
+                                <img
+                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    alt="H₂O (Водяной пар)"
+                                    src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-15.png"
+                                />
+                            </div>
+
+                            <!-- Content Section -->
+                            <div class="flex-1 flex flex-col justify-center gap-3">
+                                <h3 class="text-2xl font-semibold gas_text_primary leading-tight">
+                                    H₂O (Водяной пар)
+                                </h3>
+                                <div class="space-y-1">
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Концентрация:</span> 0-4%
+                                    </p>
+                                    <p class="text-sm gas_text_secondary">
+                                        <span class="font-medium">Температура:</span> 15°C
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Button Section -->
+                            <div class="flex-shrink-0">
+                                <button class="gas_btn w-[120px] h-[50px]">
+                                    <span class="text-xs font-medium text-center leading-tight">
+                                        в корзину
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Shopping Cart - Fixed Position -->
+        <div class="fixed bottom-6 right-6 z-50">
+            <div class="relative">
+                <!-- Cart Icon -->
+                <div class="gas_cart w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center hover:scale-110">
+                    <span class="text-2xl">🛒</span>
+                </div>
+
+                <!-- Cart Count Badge -->
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg animate-pulse">
+                    0
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Простая навигация для демонстрации
+        document.querySelectorAll('.cursor-pointer').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('Переход на детальную страницу газа');
+            });
+        });
+
+        document.querySelector('.bg-\\[\\#dff0a5\\]').addEventListener('click', function() {
+            alert('Переход на страницу расчета');
+        });
+    </script>
+</body>
+</html>

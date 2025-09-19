@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtmosphericTempCalc - Детальная страница газа</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-1rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        /* Яндекс Маркет стили */
+        .gas_page {
+            background-color: #f8f8f8;
+            min-height: 100vh;
+        }
+
+        .gas_card {
+            background: #ffffff;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .gas_card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .gas_btn {
+            background: #ff6900;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .gas_btn:hover {
+            background: #e55a00;
+            transform: translateY(-1px);
+        }
+
+        .gas_btn_secondary {
+            background: #ffffff;
+            color: #ff6900;
+            border: 1px solid #ff6900;
+        }
+
+        .gas_btn_secondary:hover {
+            background: #fff5f0;
+        }
+
+        .gas_header {
+            background: #ffffff;
+            border-bottom: 1px solid #e6e6e6;
+        }
+
+        .gas_search {
+            background: #ffffff;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+        }
+
+        .gas_search:focus {
+            border-color: #ff6900;
+            box-shadow: 0 0 0 2px rgba(255, 105, 0, 0.1);
+        }
+
+        .gas_cart {
+            background: #ff6900;
+            color: #ffffff;
+        }
+
+        .gas_cart:hover {
+            background: #e55a00;
+        }
+
+        .gas_text_primary {
+            color: #000000;
+        }
+
+        .gas_text_secondary {
+            color: #666666;
+        }
+
+        .gas_text_muted {
+            color: #999999;
+        }
+
+        .gas_price_card {
+            background: #fff5f0;
+            border: 1px solid #ff6900;
+        }
+    </style>
+</head>
+<body>
+    <div class="gas_page">
+        <!-- Header -->
+        <header class="gas_header w-full h-[164px] translate-y-[-1rem] animate-fade-in opacity-0">
+            <div class="container mx-auto px-8 py-8 flex items-center gap-4">
+                <button class="gas_btn_secondary w-[50px] h-[50px] rounded-lg shadow-md flex items-center justify-center">
+                    <span class="text-xl">←</span>
+                </button>
+                <h1 class="text-4xl font-bold gas_text_primary tracking-[-0.70px] font-['Inter',Helvetica]">
+                    AtmosphericTempCalc
+                </h1>
+                <img
+                    class="w-[110px] h-[110px] object-cover"
+                    alt="AtmosphereTemp Logo"
+                    src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-4.png"
+                />
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="w-full py-8">
+            <div class="container mx-auto px-8 max-w-6xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Left Column - Image and Basic Info -->
+                    <div class="space-y-6">
+                        <div class="gas_card">
+                            <div class="p-8">
+                                <div class="text-center">
+                                    <img
+                                        class="w-[200px] h-[200px] object-cover rounded-lg mx-auto mb-6"
+                                        alt="CO₂ (Углекислый газ)"
+                                        src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-5.png"
+                                    />
+                                    <h2 class="text-3xl font-bold gas_text_primary mb-2">
+                                        CO₂ (Углекислый газ)
+                                    </h2>
+                                    <p class="text-lg gas_text_secondary mb-4">
+                                        Диоксид углерода
+                                    </p>
+                                    <div class="gas_price_card rounded-lg p-4 mb-6">
+                                        <div class="text-2xl font-bold gas_text_primary">
+                                            ₽2,500
+                                        </div>
+                                        <div class="text-sm gas_text_secondary">
+                                            за м³
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Input Fields -->
+                        <div class="gas_card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold gas_text_primary mb-4">
+                                    Параметры расчета
+                                </h3>
+
+                                <!-- Temperature Input -->
+                                <div class="mb-4">
+                                    <label class="block text-sm font-medium gas_text_secondary mb-2">
+                                        Температура (°C)
+                                    </label>
+                                    <input
+                                        type="number"
+                                        value="15"
+                                        class="gas_search w-full h-[50px] px-4"
+                                        placeholder="Введите температуру"
+                                    />
+                                    <p class="text-xs gas_text_muted mt-1">
+                                        Диапазон для газообразного состояния: -78.5°C - 2000°C
+                                    </p>
+                                </div>
+
+                                <!-- Concentration Input -->
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium gas_text_secondary mb-2">
+                                        Концентрация (%)
+                                    </label>
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        value="0.04"
+                                        class="gas_search w-full h-[50px] px-4"
+                                        placeholder="Введите концентрацию"
+                                    />
+                                    <p class="text-xs gas_text_muted mt-1">
+                                        Введите значение от 0 (не включительно) до 100%
+                                    </p>
+                                </div>
+
+                                <!-- Order Button -->
+                                <button class="gas_btn w-full h-[60px] text-lg font-semibold">
+                                    Рассчитать температуру
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Detailed Information -->
+                    <div class="space-y-6">
+                        <!-- Description -->
+                        <div class="gas_card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold gas_text_primary mb-4">
+                                    Описание
+                                </h3>
+                                <p class="gas_text_secondary leading-relaxed">
+                                    Углекислый газ - это бесцветный газ без запаха, который является важной частью углеродного цикла Земли. Он играет ключевую роль в парниковом эффекте и является основным продуктом сгорания органических веществ.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Properties -->
+                        <div class="gas_card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold gas_text_primary mb-4">
+                                    Физические свойства
+                                </h3>
+                                <ul class="space-y-2">
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Молекулярная формула: CO₂
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Молярная масса: 44.01 г/моль
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Плотность: 1.977 г/л (при 0°C)
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Температура кипения: -78.5°C
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Растворимость в воде: высокая
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Applications -->
+                        <div class="gas_card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold gas_text_primary mb-4">
+                                    Применение
+                                </h3>
+                                <ul class="space-y-2">
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Пищевая промышленность (газированные напитки)
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Огнетушители
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Сварочные работы
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Холодильная техника
+                                    </li>
+                                    <li class="gas_text_secondary flex items-start">
+                                        <span class="text-[#ff6900] mr-2">•</span>
+                                        Сельское хозяйство (парниковый эффект)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Atmospheric Data -->
+                        <div class="gas_card">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold gas_text_primary mb-4">
+                                    Атмосферные данные
+                                </h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-[#f8f8f8] rounded-lg p-4">
+                                        <div class="text-sm gas_text_muted mb-1">Концентрация</div>
+                                        <div class="text-lg font-semibold gas_text_primary">
+                                            0.04%
+                                        </div>
+                                    </div>
+                                    <div class="bg-[#f8f8f8] rounded-lg p-4">
+                                        <div class="text-sm gas_text_muted mb-1">Температура</div>
+                                        <div class="text-lg font-semibold gas_text_primary">
+                                            15°C
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Простая навигация для демонстрации
+        document.querySelector('button').addEventListener('click', function() {
+            alert('Возврат на главную страницу');
+        });
+
+        document.querySelector('.bg-\\[\\#dff0a5\\]').addEventListener('click', function() {
+            alert('Переход на страницу расчета');
+        });
+
+        // Валидация полей ввода
+        const temperatureInput = document.querySelector('input[type="number"]');
+        const concentrationInput = document.querySelector('input[step="0.01"]');
+
+        temperatureInput.addEventListener('input', function() {
+            const value = parseFloat(this.value);
+            if (value < -78.5 || value > 2000) {
+                this.style.borderColor = 'red';
+            } else {
+                this.style.borderColor = '#d1d5db';
+            }
+        });
+
+        concentrationInput.addEventListener('input', function() {
+            const value = parseFloat(this.value);
+            if (value <= 0 || value > 100) {
+                this.style.borderColor = 'red';
+            } else {
+                this.style.borderColor = '#d1d5db';
+            }
+        });
+    </script>
+</body>
+</html>

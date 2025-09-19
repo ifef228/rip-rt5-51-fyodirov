@@ -1,4 +1,125 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "label": "AtmosphericTemperatureCalculator",
+      "routes": [
+        "/"
+      ],
+      "dataModelId": "14:69",
+      "isRoot": true
+    },
+    {
+      "id": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx",
+      "label": "AtmosphericGasDetail",
+      "routes": [
+        "/atmospheric-gas/:id"
+      ]
+    },
+    {
+      "id": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "label": "TemperatureCalculation",
+      "routes": [
+        "/temperature-calculation"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx:54:4-to-src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "source": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "target": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "data": {
+        "viaRoute": "/temperature-calculation",
+        "trigger": {
+          "element": "navigate(\"/temperature-calculation\")",
+          "line": 54,
+          "endLine": 54,
+          "column": 4,
+          "endColumn": 40,
+          "sourceFile": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx:58:4-to-src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "source": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "target": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "data": {
+        "viaRoute": "/temperature-calculation",
+        "trigger": {
+          "element": "navigate(\"/temperature-calculation\")",
+          "line": 58,
+          "endLine": 58,
+          "column": 4,
+          "endColumn": 40,
+          "sourceFile": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx:155:33-to-src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "source": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx",
+      "target": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate(\"/\")",
+          "line": 155,
+          "endLine": 155,
+          "column": 33,
+          "endColumn": 46,
+          "sourceFile": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx:164:4-to-src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "source": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx",
+      "target": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate(\"/\")",
+          "line": 164,
+          "endLine": 164,
+          "column": 4,
+          "endColumn": 17,
+          "sourceFile": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx:222:6-to-src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "source": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx",
+      "target": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "data": {
+        "viaRoute": "/temperature-calculation",
+        "trigger": {
+          "element": "navigate(\"/temperature-calculation\", {\n        state: { selectedGases: [gas.id] }\n      })",
+          "line": 222,
+          "endLine": 224,
+          "column": 6,
+          "endColumn": 8,
+          "sourceFile": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx:51:4-to-src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "source": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "target": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "navigate(\"/\")",
+          "line": 51,
+          "endLine": 51,
+          "column": 4,
+          "endColumn": 17,
+          "sourceFile": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx"
+        }
+      }
+    }
+  ]
 }

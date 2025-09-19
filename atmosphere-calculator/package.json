@@ -2,8 +2,8 @@
     "version": "1.0.0",
     "source": "./index.html",
     "type": "module",
-    "name": "atmosphere-calculator",
-    "description": "Калькулятор температуры атмосферы по концентрации газов",
+    "name": "atmospheric-temperature-calculator",
+    "description": "Калькулятор температуры атмосферы через расчет концентрации газов",
     "scripts": {
       "dev": "vite",
       "build": "vite build"
