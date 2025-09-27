@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
+import { useCart } from "../../contexts/CartContext";
 import { Input } from "../../components/ui/input";
 
 const atmosphericGases = [
@@ -43,25 +43,9 @@ const atmosphericGases = [
 ];
 
 export const AtmosphericTemperatureCalculator = (): JSX.Element => {
-  const [cartItems, setCartItems] = useState<number[]>([]);
+  const { addToCart, isInCart, getCartItemsCount } = useCart();
   const navigate = useNavigate();
 
-  const addToCart = (gasId: number) => {
-    setCartItems(prev => {
-      if (!prev.includes(gasId)) {
-        return [...prev, gasId];
-      }
-      return prev;
-    });
-  };
-
-  const removeFromCart = (gasId: number) => {
-    setCartItems(prev => prev.filter(id => id !== gasId));
-  };
-
-  const handleCalculateTemperature = () => {
-    navigate("/temperature-calculation");
-  };
 
   const handleCartClick = () => {
     navigate("/temperature-calculation");
@@ -157,7 +141,7 @@ export const AtmosphericTemperatureCalculator = (): JSX.Element => {
                   className="gas_btn w-[120px] h-[50px]"
                 >
                   <span className="text-xs font-medium text-center leading-tight">
-                    {cartItems.includes(gas.id) ? "в корзине" : "в корзину"}
+                    {isInCart(gas.id) ? "в корзине" : "в корзину"}
                   </span>
                 </Button>
               </div>
@@ -180,9 +164,9 @@ export const AtmosphericTemperatureCalculator = (): JSX.Element => {
           </div>
 
           {/* Cart Count Badge */}
-          {cartItems.length > 0 && (
+          {getCartItemsCount() > 0 && (
             <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg animate-pulse">
-              {cartItems.length}
+              {getCartItemsCount()}
             </div>
           )}
         </div>

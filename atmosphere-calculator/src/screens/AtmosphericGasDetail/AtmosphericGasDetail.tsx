@@ -1,9 +1,13 @@
-import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
-import { Input } from "../../components/ui/input";
-import { gasTemperatureRanges } from "../../data/mockOrderData";
+
+interface NumericalValue {
+  value: string;
+  unit: string;
+  label: string;
+  note?: string;
+}
 
 // Расширенные данные о газах с ценами
 const gasDetails = {
@@ -14,14 +18,14 @@ const gasDetails = {
     concentration: "0.04%",
     temperature: "15°C",
     image: "https://c.animaapp.com/mfi4rqisUqRMxb/img/image-5.png",
-    price: "₽2,500",
-    pricePerVolume: "за м³",
     description: "Углекислый газ - это бесцветный газ без запаха, который является важной частью углеродного цикла Земли. Он играет ключевую роль в парниковом эффекте и является основным продуктом сгорания органических веществ.",
+    numericalValues: {
+      molarMass: { value: "44.01", unit: "г/моль", label: "Молярная масса" } as NumericalValue,
+      density: { value: "1.977", unit: "г/л", label: "Плотность", note: "при 0°C" } as NumericalValue,
+      boilingPoint: { value: "-78.5", unit: "°C", label: "Температура кипения" } as NumericalValue
+    },
     properties: [
       "Молекулярная формула: CO₂",
-      "Молярная масса: 44.01 г/моль",
-      "Плотность: 1.977 г/л (при 0°C)",
-      "Температура кипения: -78.5°C",
       "Растворимость в воде: высокая"
     ],
     applications: [
@@ -39,14 +43,14 @@ const gasDetails = {
     concentration: "20.95%",
     temperature: "15°C",
     image: "https://c.animaapp.com/mfi4rqisUqRMxb/img/image-12.png",
-    price: "₽1,800",
-    pricePerVolume: "за м³",
     description: "Кислород - это химический элемент, жизненно необходимый для большинства живых организмов. Он составляет около 21% атмосферы Земли и является ключевым компонентом для дыхания.",
+    numericalValues: {
+      molarMass: { value: "32.00", unit: "г/моль", label: "Молярная масса" } as NumericalValue,
+      density: { value: "1.429", unit: "г/л", label: "Плотность", note: "при 0°C" } as NumericalValue,
+      boilingPoint: { value: "-183", unit: "°C", label: "Температура кипения" } as NumericalValue
+    },
     properties: [
       "Молекулярная формула: O₂",
-      "Молярная масса: 32.00 г/моль",
-      "Плотность: 1.429 г/л (при 0°C)",
-      "Температура кипения: -183°C",
       "Цвет: бесцветный"
     ],
     applications: [
@@ -64,14 +68,14 @@ const gasDetails = {
     concentration: "0.93%",
     temperature: "15°C",
     image: "https://c.animaapp.com/mfi4rqisUqRMxb/img/image-13.png",
-    price: "₽3,200",
-    pricePerVolume: "за м³",
     description: "Аргон - это благородный газ, который составляет около 1% атмосферы Земли. Он инертен и не вступает в химические реакции при обычных условиях, что делает его полезным для различных промышленных применений.",
+    numericalValues: {
+      atomicMass: { value: "39.95", unit: "г/моль", label: "Атомная масса" } as NumericalValue,
+      density: { value: "1.784", unit: "г/л", label: "Плотность", note: "при 0°C" } as NumericalValue,
+      boilingPoint: { value: "-185.8", unit: "°C", label: "Температура кипения" } as NumericalValue
+    },
     properties: [
       "Атомная формула: Ar",
-      "Атомная масса: 39.95 г/моль",
-      "Плотность: 1.784 г/л (при 0°C)",
-      "Температура кипения: -185.8°C",
       "Инертный газ"
     ],
     applications: [
@@ -89,14 +93,14 @@ const gasDetails = {
     concentration: "78.08%",
     temperature: "15°C",
     image: "https://c.animaapp.com/mfi4rqisUqRMxb/img/image-14.png",
-    price: "₽1,200",
-    pricePerVolume: "за м³",
     description: "Азот - это самый распространенный газ в атмосфере Земли, составляющий около 78% её объёма. Он является основным компонентом белков и ДНК, что делает его жизненно важным для всех живых организмов.",
+    numericalValues: {
+      molarMass: { value: "28.01", unit: "г/моль", label: "Молярная масса" } as NumericalValue,
+      density: { value: "1.251", unit: "г/л", label: "Плотность", note: "при 0°C" } as NumericalValue,
+      boilingPoint: { value: "-195.8", unit: "°C", label: "Температура кипения" } as NumericalValue
+    },
     properties: [
       "Молекулярная формула: N₂",
-      "Молярная масса: 28.01 г/моль",
-      "Плотность: 1.251 г/л (при 0°C)",
-      "Температура кипения: -195.8°C",
       "Инертный при обычных условиях"
     ],
     applications: [
@@ -114,14 +118,14 @@ const gasDetails = {
     concentration: "0-4%",
     temperature: "15°C",
     image: "https://c.animaapp.com/mfi4rqisUqRMxb/img/image-15.png",
-    price: "₽800",
-    pricePerVolume: "за м³",
     description: "Водяной пар - это газообразное состояние воды, которое играет важную роль в климатических процессах. Его концентрация в атмосфере сильно варьируется в зависимости от температуры и влажности.",
+    numericalValues: {
+      molarMass: { value: "18.02", unit: "г/моль", label: "Молярная масса" } as NumericalValue,
+      density: { value: "0.804", unit: "г/л", label: "Плотность", note: "при 100°C" } as NumericalValue,
+      boilingPoint: { value: "100", unit: "°C", label: "Температура кипения" } as NumericalValue
+    },
     properties: [
       "Молекулярная формула: H₂O",
-      "Молярная масса: 18.02 г/моль",
-      "Плотность: 0.804 г/л (при 100°C)",
-      "Температура кипения: 100°C",
       "Парниковый газ"
     ],
     applications: [
@@ -141,12 +145,6 @@ export const AtmosphericGasDetail = (): JSX.Element => {
   const gasId = parseInt(id || "1");
   const gas = gasDetails[gasId as keyof typeof gasDetails];
 
-  // Состояние для полей ввода
-  const [temperature, setTemperature] = useState(gas?.temperature || "15");
-  const [concentration, setConcentration] = useState(gas?.concentration || "0.04");
-  const [temperatureError, setTemperatureError] = useState("");
-  const [concentrationError, setConcentrationError] = useState("");
-
   if (!gas) {
     return (
       <div className="min-h-screen bg-[#e1e1e1] flex items-center justify-center">
@@ -164,69 +162,6 @@ export const AtmosphericGasDetail = (): JSX.Element => {
     navigate("/");
   };
 
-  // Валидация температуры
-  const validateTemperature = (value: string) => {
-    const temp = parseFloat(value);
-    const range = gasTemperatureRanges[gasId as keyof typeof gasTemperatureRanges];
-
-    if (isNaN(temp)) {
-      setTemperatureError("Температура должна быть числом");
-      return false;
-    }
-
-    if (temp < range.min || temp > range.max) {
-      setTemperatureError(`Температура должна быть от ${range.min}°C до ${range.max}°C для газообразного состояния`);
-      return false;
-    }
-
-    setTemperatureError("");
-    return true;
-  };
-
-  // Валидация концентрации
-  const validateConcentration = (value: string) => {
-    const conc = parseFloat(value);
-
-    if (isNaN(conc)) {
-      setConcentrationError("Концентрация должна быть числом");
-      return false;
-    }
-
-    if (conc <= 0 || conc > 100) {
-      setConcentrationError("Концентрация должна быть больше 0 и не больше 100%");
-      return false;
-    }
-
-    setConcentrationError("");
-    return true;
-  };
-
-  const handleTemperatureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setTemperature(value);
-    validateTemperature(value);
-  };
-
-  const handleConcentrationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setConcentration(value);
-    validateConcentration(value);
-  };
-
-  const handleOrderClick = () => {
-    const isTempValid = validateTemperature(temperature);
-    const isConcValid = validateConcentration(concentration);
-
-    if (isTempValid && isConcValid) {
-      // Переход на страницу расчета с выбранным газом
-      navigate("/temperature-calculation", {
-        state: { selectedGases: [gas.id] }
-      });
-    } else {
-      alert("Пожалуйста, исправьте ошибки в полях ввода");
-    }
-  };
-
   return (
     <div className="relative min-h-screen w-full bg-[#e1e1e1]">
       {/* Header */}
@@ -236,7 +171,7 @@ export const AtmosphericGasDetail = (): JSX.Element => {
             onClick={handleBackClick}
             className="gas_btn_secondary w-[50px] h-[50px] rounded-lg shadow-md flex items-center justify-center"
           >
-            <span className="text-xl">←</span>
+            <span className="text-xl">🏠</span>
           </Button>
           <h1 className="text-4xl font-bold text-black tracking-[-0.70px] [font-family:'Inter',Helvetica]">
             AtmosphericTempCalc
@@ -269,79 +204,10 @@ export const AtmosphericGasDetail = (): JSX.Element => {
                     <p className="text-lg text-gray-600 mb-4">
                       {gas.fullName}
                     </p>
-                    <div className="bg-[#dff0a5ad] rounded-lg p-4 mb-6">
-                      <div className="text-2xl font-bold text-gray-800">
-                        {gas.price}
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {gas.pricePerVolume}
-                      </div>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Input Fields */}
-              <Card className="bg-white shadow-lg border border-gray-200 rounded-xl">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                    Параметры расчета
-                  </h3>
-
-                  {/* Temperature Input */}
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Температура (°C)
-                    </label>
-                    <Input
-                      type="number"
-                      value={temperature}
-                      onChange={handleTemperatureChange}
-                      className={`w-full h-[50px] bg-[#f8f8f8] border rounded-lg px-4 ${
-                        temperatureError ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="Введите температуру"
-                    />
-                    {temperatureError && (
-                      <p className="text-red-500 text-sm mt-1">{temperatureError}</p>
-                    )}
-                    <p className="text-xs text-gray-500 mt-1">
-                      Диапазон для газообразного состояния: {gasTemperatureRanges[gasId as keyof typeof gasTemperatureRanges]?.min}°C - {gasTemperatureRanges[gasId as keyof typeof gasTemperatureRanges]?.max}°C
-                    </p>
-                  </div>
-
-                  {/* Concentration Input */}
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Концентрация (%)
-                    </label>
-                    <Input
-                      type="number"
-                      step="0.01"
-                      value={concentration}
-                      onChange={handleConcentrationChange}
-                      className={`w-full h-[50px] bg-[#f8f8f8] border rounded-lg px-4 ${
-                        concentrationError ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                      placeholder="Введите концентрацию"
-                    />
-                    {concentrationError && (
-                      <p className="text-red-500 text-sm mt-1">{concentrationError}</p>
-                    )}
-                    <p className="text-xs text-gray-500 mt-1">
-                      Введите значение от 0 (не включительно) до 100%
-                    </p>
-                  </div>
-
-                  {/* Order Button */}
-                  <Button
-                    onClick={handleOrderClick}
-                    className="gas_btn w-full h-[60px] text-lg font-semibold"
-                  >
-                    Рассчитать температуру
-                  </Button>
-                </CardContent>
-              </Card>
             </div>
 
             {/* Right Column - Detailed Information */}
@@ -411,6 +277,28 @@ export const AtmosphericGasDetail = (): JSX.Element => {
                         {gas.temperature}
                       </div>
                     </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Numerical Values */}
+              <Card className="bg-white shadow-lg border border-gray-200 rounded-xl">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                    Физические характеристики
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {Object.entries(gas.numericalValues).map(([key, value]) => (
+                      <div key={key} className="bg-[#f8f8f8] rounded-lg p-4">
+                        <div className="text-sm text-gray-500 mb-1">{value.label}</div>
+                        <div className="text-lg font-semibold text-gray-800">
+                          {value.value} <span className="text-sm text-gray-600">{value.unit}</span>
+                        </div>
+                        {value.note && (
+                          <div className="text-xs text-gray-400 mt-1">{value.note}</div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
