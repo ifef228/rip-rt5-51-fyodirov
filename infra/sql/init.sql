@@ -1,33 +1,45 @@
-create table gas(
-	id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	name VARCHAR(32) not null,
-	formula VARCHAR(16) not null,
-	price_for_month decimal not null,
-	detailed_description VARCHAR(512)
+
+CREATE  TABLE gas (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    formula VARCHAR(255) NOT NULL,
+    detailed_description TEXT NOT NULL
 );
 
-create table users(
-	id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	password varchar(256),
-	login varchar(256)
+-- Создание таблицы user
+CREATE TABLE users (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    password VARCHAR(255) NOT NULL,
+    login VARCHAR(255) NOT NULL
 );
 
-create table calc_order(
-	id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	user_id INTEGER,
-	price decimal,
-	is_active bool default true,
+-- Создание таблицы calc_order
+CREATE  TABLE calc_order (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id INTEGER,
+    temp_result DECIMAL(10,2),
+    timestamp TIMESTAMP NOT NULL,
 
-	foreign key (user_id) references users(id)
+    FOREIGN KEY (user_id) REFERENCES "users"(id)
 );
 
-create table gas_order(
-	id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	gas_id INTEGER,
-	calk_order_id INTEGER,
-	concentration INTEGER not null check (concentration <= 100 and concentration >= 0),
-	temperature INTEGER not null,
+-- Создание таблицы gas_order
+create TABLE gas_order (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    gas_id INTEGER,
+    calc_order_id INTEGER,
+    concentration INTEGER NOT NULL,
+    temperature INTEGER NOT NULL,
 
-	foreign key (gas_id) references gas(id),
-	foreign key (calk_order_id) references calc_order(id)
-)
+    FOREIGN KEY (gas_id) REFERENCES gas(id),
+    FOREIGN KEY (calc_order_id) REFERENCES calc_order(id)
+);
+
+-- Создание индексов для улучшения производительности
+CREATE INDEX idx_gas_name ON gas(name);
+CREATE INDEX idx_gas_formula ON gas(formula);
+CREATE INDEX idx_users_login ON users(login);
+CREATE INDEX idx_calc_order_user_id ON calc_order(user_id);
+CREATE INDEX idx_calc_order_timestamp ON calc_order(timestamp);
+CREATE INDEX idx_gas_order_gas_id ON gas_order(gas_id);
+CREATE INDEX idx_gas_order_calc_order_id ON gas_order(calc_order_id);

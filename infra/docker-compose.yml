@@ -32,6 +32,18 @@ services:
       timeout: 5s
       retries: 5
 
+  adminer:
+    image: adminer:4.8.1
+    container_name: adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"  # Adminer будет доступен на порту 8081
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres  # Имя сервиса PostgreSQL
+
 volumes:
   minio_data:  # Именованный том Docker для хранения данных (управляется Docker'ом)
   postgres_data:  # Именованный том Docker для хранения данных (управляется Docker'ом)
