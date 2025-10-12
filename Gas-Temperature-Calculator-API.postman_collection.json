@@ -1,0 +1,359 @@
+{
+  "info": {
+    "name": "Gas Temperature Calculator API",
+    "description": "REST API для системы расчета температуры газов",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Услуги (Газы)",
+      "item": [
+        {
+          "name": "GET список услуг с фильтрацией",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/gases?name=CO₂&formula=CO₂&page=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["gases"],
+              "query": [
+                {"key": "name", "value": "CO₂", "description": "Фильтр по названию"},
+                {"key": "formula", "value": "CO₂", "description": "Фильтр по формуле"},
+                {"key": "page", "value": "0", "description": "Номер страницы"},
+                {"key": "size", "value": "20", "description": "Размер страницы"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET одна услуга",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/gases/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["gases", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST добавление услуги",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"H₂ (Водород)\",\n  \"formula\": \"H₂\",\n  \"detailedDescription\": \"Водород - самый легкий химический элемент, составляющий основную часть массы звезд.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/gases",
+              "host": ["{{baseUrl}}"],
+              "path": ["gases"]
+            }
+          }
+        },
+        {
+          "name": "PUT изменение услуги",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"H₂ (Водород) - обновлено\",\n  \"detailedDescription\": \"Обновленное описание водорода.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/gases/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["gases", "1"]
+            }
+          }
+        },
+        {
+          "name": "DELETE удаление услуги",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/gases/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["gases", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST добавление изображения",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/path/to/image.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/gases/1/image",
+              "host": ["{{baseUrl}}"],
+              "path": ["gases", "1", "image"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Заявки (Заказы)",
+      "item": [
+        {
+          "name": "GET иконка корзины",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/cart-icon",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "cart-icon"]
+            }
+          }
+        },
+        {
+          "name": "GET список заявок с фильтрацией",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders?status=COMPLETED&page=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"],
+              "query": [
+                {"key": "status", "value": "COMPLETED", "description": "Фильтр по статусу"},
+                {"key": "formedDateFrom", "value": "2024-01-01T00:00:00", "description": "Дата формирования от"},
+                {"key": "formedDateTo", "value": "2024-12-31T23:59:59", "description": "Дата формирования до"},
+                {"key": "page", "value": "0", "description": "Номер страницы"},
+                {"key": "size", "value": "20", "description": "Размер страницы"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET одна заявка",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "PUT изменение заявки",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Обновленное описание заявки\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "PUT сформировать заявку",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1/form",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1", "form"]
+            }
+          }
+        },
+        {
+          "name": "PUT завершить заявку",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1/complete",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1", "complete"]
+            }
+          }
+        },
+        {
+          "name": "DELETE удаление заявки",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            }
+          }
+        },
+        {
+          "name": "POST добавление услуги в заявку",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"gasId\": 1,\n  \"concentration\": 0.04,\n  \"temperature\": 15.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/1/gases",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1", "gases"]
+            }
+          }
+        },
+        {
+          "name": "PUT изменение услуги в заявке",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"concentration\": 0.05,\n  \"temperature\": 16.0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/1/gases/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1", "gases", "1"]
+            }
+          }
+        },
+        {
+          "name": "DELETE удаление услуги из заявки",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1/gases/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1", "gases", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Пользователи",
+      "item": [
+        {
+          "name": "POST регистрация пользователя",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"newuser\",\n  \"password\": \"password123\",\n  \"email\": \"user@example.com\",\n  \"firstName\": \"Иван\",\n  \"lastName\": \"Иванов\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "register"]
+            }
+          }
+        },
+        {
+          "name": "POST аутентификация",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"newuser\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "login"]
+            }
+          }
+        },
+        {
+          "name": "GET профиль пользователя",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Authorization", "value": "Bearer mock_token_1"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "profile"]
+            }
+          }
+        },
+        {
+          "name": "PUT обновление профиля",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer mock_token_1"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newemail@example.com\",\n  \"firstName\": \"Петр\",\n  \"lastName\": \"Петров\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "profile"]
+            }
+          }
+        },
+        {
+          "name": "POST деавторизация",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Authorization", "value": "Bearer mock_token_1"}
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/logout",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "logout"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
