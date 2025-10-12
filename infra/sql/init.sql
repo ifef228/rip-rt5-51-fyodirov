@@ -10,15 +10,18 @@ CREATE  TABLE gas (
 -- Создание таблицы user
 CREATE TABLE users (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    login VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    login VARCHAR(255) NOT NULL
+    email VARCHAR(100),
+    first_name VARCHAR(100),
+    last_name VARCHAR(100)
 );
 
 -- Создание таблицы calc_order
 CREATE  TABLE calc_order (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id INTEGER,
-    temp_result DECIMAL(10,2),
+    temp_result DOUBLE PRECISION,
     timestamp TIMESTAMP NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'DRAFT',
     description VARCHAR(500),
@@ -31,8 +34,8 @@ create TABLE gas_order (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     gas_id INTEGER,
     calc_order_id INTEGER,
-    concentration INTEGER NOT NULL,
-    temperature INTEGER NOT NULL,
+    concentration DOUBLE PRECISION NOT NULL,
+    temperature DOUBLE PRECISION NOT NULL,
 
     FOREIGN KEY (gas_id) REFERENCES gas(id),
     FOREIGN KEY (calc_order_id) REFERENCES calc_order(id)

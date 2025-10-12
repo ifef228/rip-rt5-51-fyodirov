@@ -1,0 +1,333 @@
+@startuml Gas Temperature Calculator API - Class Diagram
+
+!define ENTITY_COLOR #E3F2FD
+!define DTO_COLOR #E8F5E8
+!define REPOSITORY_COLOR #FFF3E0
+!define SERVICE_COLOR #FCE4EC
+!define CONTROLLER_COLOR #F3E5F5
+
+package "Entity Layer" <<Rectangle>> {
+    class Gas <<Entity>> ENTITY_COLOR {
+        - id: Long?
+        - name: String
+        - formula: String
+        - detailedDescription: String
+        - imageUrl: String?
+        + Gas()
+        + copy(): Gas
+    }
+
+    class CalcOrder <<Entity>> ENTITY_COLOR {
+        - id: Long?
+        - userId: Long?
+        - tempResult: Double?
+        - timestamp: LocalDateTime
+        - status: OrderStatus
+        - description: String?
+        + CalcOrder()
+        + copy(): CalcOrder
+    }
+
+    class GasOrder <<Entity>> ENTITY_COLOR {
+        - id: Long?
+        - gasId: Long
+        - calcOrderId: Long?
+        - concentration: Double
+        - temperature: Double
+        + GasOrder()
+        + copy(): GasOrder
+    }
+
+    class User <<Entity>> ENTITY_COLOR {
+        - id: Long?
+        - login: String
+        - password: String
+        - email: String?
+        - firstName: String?
+        - lastName: String?
+        + User()
+        + copy(): User
+    }
+
+    enum OrderStatus <<Enumeration>> ENTITY_COLOR {
+        DRAFT
+        COMPLETED
+        DELETED
+    }
+}
+
+package "DTO Layer" <<Rectangle>> {
+    class ApiResponse<T> <<DTO>> DTO_COLOR {
+        - success: Boolean
+        - message: String?
+        - data: T?
+        - total: Long?
+        - page: Int?
+        - size: Int?
+        + success(): ApiResponse<T>
+        + error(): ApiResponse<T>
+    }
+
+    class CreateGasDto <<DTO>> DTO_COLOR {
+        - name: String
+        - formula: String
+        - detailedDescription: String
+    }
+
+    class UpdateGasDto <<DTO>> DTO_COLOR {
+        - name: String?
+        - formula: String?
+        - detailedDescription: String?
+    }
+
+    class GasResponseDto <<DTO>> DTO_COLOR {
+        - id: Long
+        - name: String
+        - formula: String
+        - detailedDescription: String
+        - imageUrl: String?
+        - createdAt: String?
+        - updatedAt: String?
+    }
+
+    class GasFilterDto <<DTO>> DTO_COLOR {
+        - name: String?
+        - formula: String?
+    }
+
+    class OrderResponseDto <<DTO>> DTO_COLOR {
+        - id: Long
+        - userId: Long
+        - tempResult: Double?
+        - timestamp: LocalDateTime
+        - status: String
+        - description: String?
+        - gasOrders: List<GasOrderResponseDto>
+    }
+
+    class GasOrderResponseDto <<DTO>> DTO_COLOR {
+        - id: Long
+        - gasId: Long
+        - gasName: String
+        - gasFormula: String
+        - gasImageUrl: String?
+        - concentration: Double
+        - temperature: Double
+    }
+
+    class UpdateOrderDto <<DTO>> DTO_COLOR {
+        - description: String?
+    }
+
+    class AddGasToOrderDto <<DTO>> DTO_COLOR {
+        - gasId: Long
+        - concentration: Double
+        - temperature: Double
+    }
+
+    class UpdateGasInOrderDto <<DTO>> DTO_COLOR {
+        - concentration: Double?
+        - temperature: Double?
+    }
+
+    class OrderFilterDto <<DTO>> DTO_COLOR {
+        - status: String?
+        - startDate: LocalDateTime?
+        - endDate: LocalDateTime?
+    }
+
+    class CartIconDto <<DTO>> DTO_COLOR {
+        - orderId: Long?
+        - itemCount: Int
+    }
+
+    class RegisterUserDto <<DTO>> DTO_COLOR {
+        - login: String
+        - password: String
+        - email: String?
+        - firstName: String?
+        - lastName: String?
+    }
+
+    class LoginUserDto <<DTO>> DTO_COLOR {
+        - login: String
+        - password: String
+    }
+
+    class UserResponseDto <<DTO>> DTO_COLOR {
+        - id: Long
+        - login: String
+        - email: String?
+        - firstName: String?
+        - lastName: String?
+    }
+
+    class UpdateUserDto <<DTO>> DTO_COLOR {
+        - email: String?
+        - firstName: String?
+        - lastName: String?
+    }
+}
+
+package "Repository Layer" <<Rectangle>> {
+    interface GasRepository <<Repository>> REPOSITORY_COLOR {
+        + findByNameContainingIgnoreCase()
+        + findByFormulaContainingIgnoreCase()
+        + findByNameAndFormulaContainingIgnoreCase()
+        + countByNameContainingIgnoreCase()
+        + countByFormulaContainingIgnoreCase()
+        + countByNameAndFormulaContainingIgnoreCase()
+    }
+
+    interface CalcOrderRepository <<Repository>> REPOSITORY_COLOR {
+        + findByUserIdAndStatusAndTempResultIsNull()
+        + findByStatusOrderByTimestampDesc()
+        + findByStatusNotOrderByTimestampDesc()
+        + countByStatus()
+        + countByStatusNot()
+    }
+
+    interface GasOrderRepository <<Repository>> REPOSITORY_COLOR {
+        + findByCalcOrderId()
+        + findByCalcOrderIdAndGasId()
+        + deleteByCalcOrderId()
+    }
+
+    interface UserRepository <<Repository>> REPOSITORY_COLOR {
+        + findByLogin()
+    }
+}
+
+package "Service Layer" <<Rectangle>> {
+    class GasService <<Service>> SERVICE_COLOR {
+        - gasRepository: GasRepository
+        - gasOrderRepository: GasOrderRepository
+        + getAllGases(): List<GasModel>
+        + searchGases(): List<GasModel>
+        + getGasById(): GasModel?
+        + getGasEntityById(): Gas?
+        + saveGas(): Gas
+        + deleteGas()
+        + getAllGasesWithFilter()
+        + getGasesCount()
+    }
+
+    class CartService <<Service>> SERVICE_COLOR {
+        - gasOrderRepository: GasOrderRepository
+        - calcOrderRepository: CalcOrderRepository
+        + getActiveCart(): CalcOrder
+        + addToCart()
+        + removeFromCart()
+        + getCartItemsCount(): Int
+        + isInCart(): Boolean
+        + clearCart()
+        + updateOrder()
+        + formOrder()
+        + completeOrder()
+        + addGasToOrder()
+        + updateGasInOrder()
+        + removeGasFromOrder()
+        + getOrdersWithFilter()
+        + getOrdersCount()
+    }
+
+    class UserService <<Service>> SERVICE_COLOR {
+        - userRepository: UserRepository
+        + registerUser(): User
+        + authenticateUser(): String?
+        + getUserById(): User?
+        + updateUser(): User?
+    }
+
+    class MinioService <<Service>> SERVICE_COLOR {
+        - minioClient: MinioClient
+        + uploadImage(): String
+        + deleteImage()
+        + getImageUrl(): String
+        + extractFileNameFromUrl()
+    }
+}
+
+package "Controller Layer" <<Rectangle>> {
+    class GasApiController <<Controller>> CONTROLLER_COLOR {
+        - gasService: GasService
+        - minioService: MinioService
+        + getAllGases(): ResponseEntity
+        + getGas(): ResponseEntity
+        + createGas(): ResponseEntity
+        + updateGas(): ResponseEntity
+        + deleteGas(): ResponseEntity
+        + uploadGasImage(): ResponseEntity
+    }
+
+    class OrderApiController <<Controller>> CONTROLLER_COLOR {
+        - cartService: CartService
+        - gasService: GasService
+        + getCartIcon(): ResponseEntity
+        + getOrders(): ResponseEntity
+        + getOrder(): ResponseEntity
+        + updateOrder(): ResponseEntity
+        + formOrder(): ResponseEntity
+        + completeOrder(): ResponseEntity
+        + deleteOrder(): ResponseEntity
+        + addGasToOrder(): ResponseEntity
+        + updateGasInOrder(): ResponseEntity
+        + removeGasFromOrder(): ResponseEntity
+    }
+
+    class UserApiController <<Controller>> CONTROLLER_COLOR {
+        - userService: UserService
+        + registerUser(): ResponseEntity
+        + loginUser(): ResponseEntity
+        + logoutUser(): ResponseEntity
+        + getUserProfile(): ResponseEntity
+        + updateUserProfile(): ResponseEntity
+    }
+}
+
+' Relationships
+Gas ||--o{ GasOrder : "1..*"
+CalcOrder ||--o{ GasOrder : "1..*"
+User ||--o{ CalcOrder : "1..*"
+GasOrder }o--|| Gas : "*..1"
+GasOrder }o--|| CalcOrder : "*..1"
+CalcOrder }o--|| User : "*..1"
+CalcOrder }o--|| OrderStatus : "1..1"
+
+' Service Dependencies
+GasService --> GasRepository : uses
+GasService --> GasOrderRepository : uses
+CartService --> GasOrderRepository : uses
+CartService --> CalcOrderRepository : uses
+UserService --> UserRepository : uses
+
+' Controller Dependencies
+GasApiController --> GasService : uses
+GasApiController --> MinioService : uses
+OrderApiController --> CartService : uses
+OrderApiController --> GasService : uses
+UserApiController --> UserService : uses
+
+' DTO Usage
+GasApiController ..> CreateGasDto : uses
+GasApiController ..> UpdateGasDto : uses
+GasApiController ..> GasResponseDto : uses
+GasApiController ..> GasFilterDto : uses
+OrderApiController ..> OrderResponseDto : uses
+OrderApiController ..> GasOrderResponseDto : uses
+OrderApiController ..> UpdateOrderDto : uses
+OrderApiController ..> AddGasToOrderDto : uses
+OrderApiController ..> UpdateGasInOrderDto : uses
+OrderApiController ..> OrderFilterDto : uses
+OrderApiController ..> CartIconDto : uses
+UserApiController ..> RegisterUserDto : uses
+UserApiController ..> LoginUserDto : uses
+UserApiController ..> UserResponseDto : uses
+UserApiController ..> UpdateUserDto : uses
+
+' API Response
+GasApiController ..> ApiResponse : uses
+OrderApiController ..> ApiResponse : uses
+UserApiController ..> ApiResponse : uses
+
+@enduml
