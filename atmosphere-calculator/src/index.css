@@ -68,6 +68,17 @@
   background: #e55a00;
 }
 
+.gas_cart_empty {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.gas_cart_empty:hover {
+  background: #cccccc;
+  transform: none;
+}
+
 .gas_text_primary {
   color: #000000;
 }

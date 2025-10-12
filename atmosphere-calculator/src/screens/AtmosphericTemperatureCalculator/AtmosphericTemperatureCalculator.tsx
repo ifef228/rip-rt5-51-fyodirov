@@ -157,8 +157,12 @@ export const AtmosphericTemperatureCalculator = (): JSX.Element => {
         <div className="relative">
           {/* Cart Icon */}
           <div
-            onClick={handleCartClick}
-            className="gas_cart w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center hover:scale-110"
+            onClick={getCartItemsCount() > 0 ? handleCartClick : undefined}
+            className={`w-16 h-16 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center ${
+              getCartItemsCount() > 0
+                ? "gas_cart cursor-pointer hover:shadow-xl hover:scale-110"
+                : "gas_cart_empty"
+            }`}
           >
             <span className="text-2xl">🛒</span>
           </div>

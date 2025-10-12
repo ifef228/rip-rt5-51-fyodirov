@@ -3,7 +3,8 @@ CREATE  TABLE gas (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     formula VARCHAR(255) NOT NULL,
-    detailed_description TEXT NOT NULL
+    detailed_description TEXT NOT NULL,
+    image_url VARCHAR(500)
 );
 
 -- Создание таблицы user
@@ -19,6 +20,8 @@ CREATE  TABLE calc_order (
     user_id INTEGER,
     temp_result DECIMAL(10,2),
     timestamp TIMESTAMP NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'DRAFT',
+    description VARCHAR(500),
 
     FOREIGN KEY (user_id) REFERENCES "users"(id)
 );
