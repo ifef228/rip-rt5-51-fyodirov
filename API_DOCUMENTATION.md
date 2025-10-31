@@ -9,7 +9,7 @@ REST API для системы расчета температуры газов 
 ### Домены
 
 1. **Услуги (Газы)** - `/api/gases`
-2. **Заявки (Заказы)** - `/api/orders`
+2. **Заявки (Заказы)** - `/api/gas-orders`
 3. **Пользователи** - `/api/users`
 
 ### Модели данных
@@ -43,6 +43,7 @@ REST API для системы расчета температуры газов 
 - `email: String?` - Email
 - `firstName: String?` - Имя
 - `lastName: String?` - Фамилия
+- `role: String?` - Роль пользователя (например: USER, ADMIN, MODERATOR)
 
 ## API Endpoints
 
@@ -55,7 +56,7 @@ REST API для системы расчета температуры газов 
 | POST | `/api/gases` | Создать новую услугу |
 | PUT | `/api/gases/{id}` | Обновить услугу |
 | DELETE | `/api/gases/{id}` | Удалить услугу |
-| POST | `/api/gases/{id}/image` | Загрузить изображение |
+| POST | `/api/gases/{id}/image` | Добавить изображение по ссылке |
 
 **Фильтрация услуг:**
 - `name` - фильтр по названию
@@ -63,20 +64,20 @@ REST API для системы расчета температуры газов 
 - `page` - номер страницы (по умолчанию 0)
 - `size` - размер страницы (по умолчанию 20)
 
-### Заявки (Заказы) - `/api/orders`
+### Заявки (Заказы) - `/api/gas-orders`
 
 | Метод | URL | Описание |
 |-------|-----|----------|
-| GET | `/api/orders/cart-icon` | Иконка корзины |
-| GET | `/api/orders` | Список заявок с фильтрацией |
-| GET | `/api/orders/{id}` | Получить одну заявку |
-| PUT | `/api/orders/{id}` | Обновить заявку |
-| PUT | `/api/orders/{id}/form` | Сформировать заявку |
-| PUT | `/api/orders/{id}/complete` | Завершить заявку |
-| DELETE | `/api/orders/{id}` | Удалить заявку |
-| POST | `/api/orders/{id}/gases` | Добавить услугу в заявку |
-| PUT | `/api/orders/{orderId}/gases/{gasId}` | Обновить услугу в заявке |
-| DELETE | `/api/orders/{orderId}/gases/{gasId}` | Удалить услугу из заявки |
+| GET | `/api/gas-orders/cart-icon` | Иконка корзины |
+| GET | `/api/gas-orders` | Список заявок с фильтрацией |
+| GET | `/api/gas-orders/{id}` | Получить одну заявку |
+| PUT | `/api/gas-orders/{id}` | Обновить заявку |
+| PUT | `/api/gas-orders/{id}/form` | Сформировать заявку |
+| PUT | `/api/gas-orders/{id}/complete` | Завершить заявку |
+| DELETE | `/api/gas-orders/{id}` | Удалить заявку |
+| POST | `/api/gas-orders/{id}/gases` | Добавить услугу в заявку |
+| PUT | `/api/gas-orders/{orderId}/gases/{gasId}` | Обновить услугу в заявке |
+| DELETE | `/api/gas-orders/{orderId}/gases/{gasId}` | Удалить услугу из заявки |
 
 **Фильтрация заявок:**
 - `status` - фильтр по статусу (COMPLETED)
@@ -92,8 +93,23 @@ REST API для системы расчета температуры газов 
 | POST | `/api/users/register` | Регистрация пользователя |
 | POST | `/api/users/login` | Аутентификация |
 | POST | `/api/users/logout` | Деавторизация |
-| GET | `/api/users/profile` | Профиль пользователя |
-| PUT | `/api/users/profile` | Обновить профиль |
+| GET | `/api/users/profile` | Профиль пользователя (требует Authorization header) |
+| PUT | `/api/users/profile` | Обновить профиль (требует Authorization header) |
+
+## Коды ошибок
+
+### HTTP статусы
+- `200 OK` - Успешный запрос
+- `201 Created` - Ресурс успешно создан
+- `400 Bad Request` - Некорректные данные запроса
+- `403 Forbidden` - Неверный или отсутствующий токен авторизации
+- `404 Not Found` - Ресурс не найден
+- `409 Conflict` - Конфликт (например, пользователь уже существует)
+- `500 Internal Server Error` - Внутренняя ошибка сервера
+
+### Ошибки авторизации
+- `403` - "Токен авторизации не предоставлен" (отсутствует Authorization header)
+- `403` - "Неверный токен авторизации" (некорректный формат токена)
 
 ## Бизнес-логика
 
@@ -193,13 +209,24 @@ Content-Type: application/json
 {
   "name": "H₂ (Водород)",
   "formula": "H₂",
-  "detailedDescription": "Водород - самый легкий химический элемент"
+  "detailedDescription": "Водород - самый легкий химический элемент",
+  "imageUrl": "https://example.com/hydrogen.jpg"
+}
+```
+
+#### Добавление изображения к услуге
+```bash
+POST /api/gases/1/image
+Content-Type: application/json
+
+{
+  "imageUrl": "https://example.com/hydrogen-image.jpg"
 }
 ```
 
 #### Добавление услуги в заявку
 ```bash
-POST /api/orders/1/gases
+POST /api/gas-orders/1/gases
 Content-Type: application/json
 
 {
@@ -211,7 +238,36 @@ Content-Type: application/json
 
 #### Формирование заявки
 ```bash
-PUT /api/orders/1/form
+PUT /api/gas-orders/1/form
+```
+
+#### Регистрация пользователя
+```bash
+POST /api/users/register
+Content-Type: application/json
+
+{
+  "login": "newuser",
+  "password": "password123",
+  "email": "user@example.com",
+  "firstName": "Иван",
+  "lastName": "Иванов",
+  "role": "USER"
+}
+```
+
+#### Обновление профиля пользователя
+```bash
+PUT /api/users/profile
+Content-Type: application/json
+Authorization: Bearer mock_token_1
+
+{
+  "email": "newemail@example.com",
+  "firstName": "Петр",
+  "lastName": "Петров",
+  "role": "ADMIN"
+}
 ```
 
 ## Конфигурация

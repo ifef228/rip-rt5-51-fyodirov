@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Диаграмма классов (по примеру)</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:#fff; color:#000; }
+      .canvas { position: relative; width: 1400px; height: 1100px; margin: 24px auto; }
+      .pill { position: absolute; border: 1px solid #000; border-radius: 8px; padding: 6px 12px; background: #fff; font-weight: 700; text-align: center; }
+      .cloud { position: absolute; padding: 10px 14px; border: 1px solid #000; border-radius: 30px; background: #fff; }
+      .swim { position: absolute; background: #fafafa; border: 1px solid #999; border-radius: 4px; padding: 8px; }
+      .swim .header { font-weight: 700; text-align: center; margin-bottom: 8px; }
+      .note { background: #fff; border: 1px solid #000; border-radius: 4px; padding: 8px 12px; white-space: pre-line; }
+      .row { display: flex; align-items: flex-start; gap: 24px; }
+      .class { display: inline-block; padding: 8px 12px; border: 1px solid #000; border-radius: 4px; background: #fff; margin-right: 16px; }
+      .table { display: inline-block; padding: 8px 12px; border: 1px solid #000; border-radius: 4px; background: #fff; margin-right: 16px; }
+      .muted { color: #333; font-size: 13px; }
+      svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+      .dash { stroke-dasharray: 6 6; }
+    </style>
+  </head>
+  <body>
+    <div class="canvas">
+      <!-- SVG connectors -->
+      <svg viewBox="0 0 1400 1100">
+        <!-- Postman -> APIs -->
+        <line x1="700" y1="80" x2="430" y2="160" stroke="#000" stroke-width="1" />
+        <line x1="700" y1="80" x2="640" y2="160" stroke="#000" stroke-width="1" />
+        <line x1="700" y1="80" x2="860" y2="160" stroke="#000" stroke-width="1" />
+        <line x1="700" y1="80" x2="1070" y2="160" stroke="#000" stroke-width="1" />
+
+        <!-- APIs -> Backend notes (dashed) -->
+        <line x1="430" y1="198" x2="320" y2="340" stroke="#000" stroke-width="1" class="dash" />
+        <line x1="640" y1="198" x2="610" y2="340" stroke="#000" stroke-width="1" class="dash" />
+        <line x1="860" y1="198" x2="940" y2="340" stroke="#000" stroke-width="1" class="dash" />
+        <line x1="1070" y1="198" x2="1180" y2="340" stroke="#000" stroke-width="1" class="dash" />
+
+        <!-- Backend -> Model (dashed) moved endpoints down -->
+        <line x1="320" y1="470" x2="220" y2="680" stroke="#000" stroke-width="1" class="dash" />
+        <line x1="610" y1="470" x2="430" y2="680" stroke="#000" stroke-width="1" class="dash" />
+        <line x1="940" y1="560" x2="620" y2="680" stroke="#000" stroke-width="1" class="dash" />
+        <line x1="1180" y1="470" x2="810" y2="680" stroke="#000" stroke-width="1" class="dash" />
+
+        <!-- Model -> DB mappings (moved down) -->
+        <line x1="220" y1="720" x2="1060" y2="860" stroke="#000" stroke-width="1" />
+        <line x1="430" y1="720" x2="1200" y2="860" stroke="#000" stroke-width="1" />
+        <line x1="620" y1="720" x2="1320" y2="860" stroke="#000" stroke-width="1" />
+        <line x1="810" y1="720" x2="1320" y2="930" stroke="#000" stroke-width="1" />
+
+        <!-- DB cardinalities (moved down) -->
+        <text x="1080" y="846" class="muted">1  ..  0..*</text>
+        <text x="1210" y="846" class="muted">0..*  ..  1</text>
+        <text x="1240" y="916" class="muted">0..*  ..  0..1</text>
+      </svg>
+
+      <!-- Postman -->
+      <div class="pill" style="left: 640px; top: 40px; width: 120px;">Postman</div>
+
+      <!-- API clouds (4 шт) -->
+      <div class="cloud" style="left: 340px; top: 150px;">API договоров в заявках</div>
+      <div class="cloud" style="left: 560px; top: 150px;">API договоров</div>
+      <div class="cloud" style="left: 780px; top: 150px;">API заявок на счета</div>
+      <div class="cloud" style="left: 1010px; top: 150px;">API пользователей</div>
+
+      <!-- Backend swimlane -->
+      <div class="swim" style="left: 80px; top: 230px; width: 1240px; height: 280px;">
+        <div class="header">Бэкенд</div>
+        <!-- Верхний ряд: Договоры и Пользователи -->
+        <div class="row" style="gap: 24px; margin-bottom: 16px;">
+          <div class="note" style="width: 420px;">
+Набор методов Договоров
+
++GET /contracts()
++GET /contracts/&lt;id&gt;()
++POST /contracts()
++PUT /contracts/&lt;id&gt;()
++DELETE /contracts/&lt;id&gt;()
++POST /contracts/&lt;id&gt;/draft()
++POST /contracts/&lt;id&gt;/image()
+          </div>
+          <div class="note" style="width: 360px;">
+Набор методов Пользователей
+
++POST /users()
++PUT /users()
++POST /users/login()
++POST /users/logout()
+          </div>
+        </div>
+        <!-- Нижний ряд: Договоры в заявках и Заявки на счета -->
+        <div class="row" style="gap: 24px;">
+          <div class="note" style="width: 460px;">
+Набор методов Договоров в заявках
+
++DELETE /accounts/&lt;accountId&gt;/contract/&lt;contractId&gt;()
++PUT /accounts/&lt;accountId&gt;/contract/&lt;contractId&gt;/main()
+          </div>
+          <div class="note" style="width: 460px;">
+Набор методов Заявок на счета
+
++GET /accounts()
++GET /accounts/&lt;id&gt;()
++PUT /accounts/&lt;id&gt;()
++PUT /accounts/&lt;id&gt;/submit()
++PUT /accounts/&lt;id&gt;/complete()
++DELETE /accounts/&lt;id&gt;()
+          </div>
+        </div>
+      </div>
+
+      <!-- Model swimlane (moved down) -->
+      <div class="swim" style="left: 80px; top: 610px; width: 820px; height: 120px;">
+        <div class="header">Модель</div>
+        <div class="row">
+          <div class="class">Contract</div>
+          <div class="class">AccountContract</div>
+          <div class="class">Account</div>
+          <div class="class">User</div>
+        </div>
+      </div>
+
+      <!-- Database swimlane (moved down) -->
+      <div class="swim" style="left: 920px; top: 760px; width: 400px; height: 200px;">
+        <div class="header">База данных</div>
+        <div class="row" style="flex-wrap: wrap;">
+          <div class="table">contracts</div>
+          <div class="table">account_contracts</div>
+          <div class="table">accounts</div>
+          <div class="table">users</div>
+        </div>
+        <div class="muted" style="margin-top: 8px;">
+          contracts 1  ..  0..* account_contracts, accounts 0..*  ..  1 account_contracts, users 0..*  ..  0..1 accounts
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

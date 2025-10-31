@@ -5,7 +5,7 @@
 ### 1. GET список заявок (отфильтровать по дате формирования и статусу)
 
 ```http
-GET http://localhost:8080/api/orders?status=COMPLETED&formedDateFrom=2024-01-01T00:00:00&formedDateTo=2024-12-31T23:59:59&page=0&size=20
+GET http://localhost:8080/api/gas-orders?status=COMPLETED&formedDateFrom=2024-01-01T00:00:00&formedDateTo=2024-12-31T23:59:59&page=0&size=20
 Content-Type: application/json
 ```
 
@@ -16,7 +16,7 @@ Content-Type: application/json
 ### 2. GET иконки корзины
 
 ```http
-GET http://localhost:8080/api/orders/cart-icon
+GET http://localhost:8080/api/gas-orders/cart-icon
 Content-Type: application/json
 ```
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 ### 3. DELETE удалить введенную заявку (если есть)
 
 ```http
-DELETE http://localhost:8080/api/orders/1
+DELETE http://localhost:8080/api/gas-orders/1
 Content-Type: application/json
 ```
 
@@ -79,7 +79,7 @@ file: [выберите изображение .jpg/.png]
 ### 7. POST добавить услугу в заявку
 
 ```http
-POST http://localhost:8080/api/orders/1/gases
+POST http://localhost:8080/api/gas-orders/1/gases
 Content-Type: application/json
 
 {
@@ -96,7 +96,7 @@ Content-Type: application/json
 ### 8. POST добавить другую услугу в заявку
 
 ```http
-POST http://localhost:8080/api/orders/1/gases
+POST http://localhost:8080/api/gas-orders/1/gases
 Content-Type: application/json
 
 {
@@ -113,7 +113,7 @@ Content-Type: application/json
 ### 9. GET иконки корзины (проверить обновление)
 
 ```http
-GET http://localhost:8080/api/orders/cart-icon
+GET http://localhost:8080/api/gas-orders/cart-icon
 Content-Type: application/json
 ```
 
@@ -124,7 +124,7 @@ Content-Type: application/json
 ### 10. GET посмотреть заявку (из 2 услуг)
 
 ```http
-GET http://localhost:8080/api/orders/1
+GET http://localhost:8080/api/gas-orders/1
 Content-Type: application/json
 ```
 
@@ -135,7 +135,7 @@ Content-Type: application/json
 ### 11. PUT изменить поле м-м (изменить услугу в заявке)
 
 ```http
-PUT http://localhost:8080/api/orders/1/gases/1
+PUT http://localhost:8080/api/gas-orders/1/gases/1
 Content-Type: application/json
 
 {
@@ -151,7 +151,7 @@ Content-Type: application/json
 ### 12. PUT изменить заявку
 
 ```http
-PUT http://localhost:8080/api/orders/1
+PUT http://localhost:8080/api/gas-orders/1
 Content-Type: application/json
 
 {
@@ -166,7 +166,7 @@ Content-Type: application/json
 ### 13. PUT завершить введенную заявку (показать ошибку)
 
 ```http
-PUT http://localhost:8080/api/orders/1/complete
+PUT http://localhost:8080/api/gas-orders/1/complete
 Content-Type: application/json
 ```
 
@@ -177,7 +177,7 @@ Content-Type: application/json
 ### 14. PUT сформировать заявку
 
 ```http
-PUT http://localhost:8080/api/orders/1/form
+PUT http://localhost:8080/api/gas-orders/1/form
 Content-Type: application/json
 ```
 
@@ -188,7 +188,7 @@ Content-Type: application/json
 ### 15. PUT завершить сформированную заявку (вычисление температуры)
 
 ```http
-PUT http://localhost:8080/api/orders/1/complete
+PUT http://localhost:8080/api/gas-orders/1/complete
 Content-Type: application/json
 ```
 
@@ -276,7 +276,7 @@ Authorization: Bearer mock_token_1
 ### 21. GET список заявок (проверить изменения)
 
 ```http
-GET http://localhost:8080/api/orders?status=COMPLETED&page=0&size=20
+GET http://localhost:8080/api/gas-orders?status=COMPLETED&page=0&size=20
 Content-Type: application/json
 ```
 
@@ -308,7 +308,7 @@ Content-Type: application/json
 ### DELETE удаление услуги из заявки
 
 ```http
-DELETE http://localhost:8080/api/orders/1/gases/1
+DELETE http://localhost:8080/api/gas-orders/1/gases/1
 Content-Type: application/json
 ```
 

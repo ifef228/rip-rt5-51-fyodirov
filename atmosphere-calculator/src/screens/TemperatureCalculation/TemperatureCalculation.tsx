@@ -68,7 +68,7 @@ export const TemperatureCalculation = (): JSX.Element => {
           <img
             className="w-[110px] h-[110px] object-cover"
             alt="AtmosphereTemp Logo"
-            src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-4.png"
+            src="http://localhost:9001/api/v1/download-shared-object/aHR0cDovLzEyNy4wLjAuMTo5MDAwL2NhcmRzL3Bob3Rvcy9kZWZhdWx0X21hcmtldC53ZWJwP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9OFgzOElWTTA2T1pCTEcxUjFWV0UlMkYyMDI1MTAxNyUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTEwMTdUMDYyNTE4WiZYLUFtei1FeHBpcmVzPTQzMjAwJlgtQW16LVNlY3VyaXR5LVRva2VuPWV5SmhiR2NpT2lKSVV6VXhNaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpoWTJObGMzTkxaWGtpT2lJNFdETTRTVlpOTURaUFdrSk1SekZTTVZaWFJTSXNJbVY0Y0NJNk1UYzJNRGN5TkRrNU9Td2ljR0Z5Wlc1MElqb2lZV1J0YVc0aWZRLk5GMXZyU3lyQnBRQXRxcGcwQXkzU25obDhlZXg2VTNOdjJUdDFXbklBQ2NiVEJXQkhxczltVUVPMnhkSVJ5OXB4LTNLQS1mM1poN1pFNHJ3ZV9yOTJBJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZ2ZXJzaW9uSWQ9bnVsbCZYLUFtei1TaWduYXR1cmU9MjU3NmI5NmJkYjFjNDMwZmQzYjExNmY4MmE3YmY5ZGQxZTBlZjBlNTVmMjIxNWU3MzJkNDY4ZWViMTYxYjY4Zg"
           />
         </div>
       </header>

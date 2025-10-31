@@ -14,17 +14,17 @@
 - `DELETE /api/gases/{id}` - Удалить услугу
 - `POST /api/gases/{id}/image` - Загрузить изображение
 
-#### Заявки (Заказы) - `/api/orders`
-- `GET /api/orders/cart-icon` - Иконка корзины
-- `GET /api/orders` - Список заявок с фильтрацией
-- `GET /api/orders/{id}` - Получить одну заявку
-- `PUT /api/orders/{id}` - Обновить заявку
-- `PUT /api/orders/{id}/form` - Сформировать заявку
-- `PUT /api/orders/{id}/complete` - Завершить заявку
-- `DELETE /api/orders/{id}` - Удалить заявку
-- `POST /api/orders/{id}/gases` - Добавить услугу в заявку
-- `PUT /api/orders/{orderId}/gases/{gasId}` - Обновить услугу в заявке
-- `DELETE /api/orders/{orderId}/gases/{gasId}` - Удалить услугу из заявки
+#### Заявки (Заказы) - `/api/gas-orders`
+- `GET /api/gas-orders/cart-icon` - Иконка корзины
+- `GET /api/gas-orders` - Список заявок с фильтрацией
+- `GET /api/gas-orders/{id}` - Получить одну заявку
+- `PUT /api/gas-orders/{id}` - Обновить заявку
+- `PUT /api/gas-orders/{id}/form` - Сформировать заявку
+- `PUT /api/gas-orders/{id}/complete` - Завершить заявку
+- `DELETE /api/gas-orders/{id}` - Удалить заявку
+- `POST /api/gas-orders/{id}/gases` - Добавить услугу в заявку
+- `PUT /api/gas-orders/{orderId}/gases/{gasId}` - Обновить услугу в заявке
+- `DELETE /api/gas-orders/{orderId}/gases/{gasId}` - Удалить услугу из заявки
 
 #### Пользователи - `/api/users`
 - `POST /api/users/register` - Регистрация

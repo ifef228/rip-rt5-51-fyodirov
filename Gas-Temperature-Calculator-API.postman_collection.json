@@ -54,7 +54,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"H₂ (Водород)\",\n  \"formula\": \"H₂\",\n  \"detailedDescription\": \"Водород - самый легкий химический элемент, составляющий основную часть массы звезд.\"\n}"
+              "raw": "{\n  \"name\": \"H₂ (Водород)\",\n  \"formula\": \"H₂\",\n  \"detailedDescription\": \"Водород - самый легкий химический элемент, составляющий основную часть массы звезд.\",\n  \"imageUrl\": \"https://example.com/hydrogen.jpg\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/gases",
@@ -72,7 +72,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"H₂ (Водород) - обновлено\",\n  \"detailedDescription\": \"Обновленное описание водорода.\"\n}"
+              "raw": "{\n  \"name\": \"H₂ (Водород) - обновлено\",\n  \"detailedDescription\": \"Обновленное описание водорода.\",\n  \"imageUrl\": \"https://example.com/hydrogen-updated.jpg\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/gases/1",
@@ -94,19 +94,15 @@
           }
         },
         {
-          "name": "POST добавление изображения",
+          "name": "POST добавление изображения по ссылке",
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ],
             "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": "/path/to/image.jpg"
-                }
-              ]
+              "mode": "raw",
+              "raw": "{\n  \"imageUrl\": \"https://example.com/image.jpg\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/gases/1/image",
@@ -126,9 +122,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/orders/cart-icon",
+              "raw": "{{baseUrl}}/gas-orders/cart-icon",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "cart-icon"]
+              "path": ["gas-orders", "cart-icon"]
             }
           }
         },
@@ -138,9 +134,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/orders?status=COMPLETED&page=0&size=20",
+              "raw": "{{baseUrl}}/gas-orders?status=COMPLETED&page=0&size=20",
               "host": ["{{baseUrl}}"],
-              "path": ["orders"],
+              "path": ["gas-orders"],
               "query": [
                 {"key": "status", "value": "COMPLETED", "description": "Фильтр по статусу"},
                 {"key": "formedDateFrom", "value": "2024-01-01T00:00:00", "description": "Дата формирования от"},
@@ -159,7 +155,7 @@
             "url": {
               "raw": "{{baseUrl}}/orders/1",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1"]
+              "path": ["gas-orders", "1"]
             }
           }
         },
@@ -177,7 +173,7 @@
             "url": {
               "raw": "{{baseUrl}}/orders/1",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1"]
+              "path": ["gas-orders", "1"]
             }
           }
         },
@@ -187,9 +183,9 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/orders/1/form",
+              "raw": "{{baseUrl}}/gas-orders/1/form",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1", "form"]
+              "path": ["gas-orders", "1", "form"]
             }
           }
         },
@@ -199,9 +195,9 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/orders/1/complete",
+              "raw": "{{baseUrl}}/gas-orders/1/complete",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1", "complete"]
+              "path": ["gas-orders", "1", "complete"]
             }
           }
         },
@@ -213,7 +209,7 @@
             "url": {
               "raw": "{{baseUrl}}/orders/1",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1"]
+              "path": ["gas-orders", "1"]
             }
           }
         },
@@ -229,9 +225,9 @@
               "raw": "{\n  \"gasId\": 1,\n  \"concentration\": 0.04,\n  \"temperature\": 15.0\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/orders/1/gases",
+              "raw": "{{baseUrl}}/gas-orders/1/gases",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1", "gases"]
+              "path": ["gas-orders", "1", "gases"]
             }
           }
         },
@@ -249,7 +245,7 @@
             "url": {
               "raw": "{{baseUrl}}/orders/1/gases/1",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1", "gases", "1"]
+              "path": ["gas-orders", "1", "gases", "1"]
             }
           }
         },
@@ -261,7 +257,7 @@
             "url": {
               "raw": "{{baseUrl}}/orders/1/gases/1",
               "host": ["{{baseUrl}}"],
-              "path": ["orders", "1", "gases", "1"]
+              "path": ["gas-orders", "1", "gases", "1"]
             }
           }
         }
@@ -279,7 +275,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"login\": \"newuser\",\n  \"password\": \"password123\",\n  \"email\": \"user@example.com\",\n  \"firstName\": \"Иван\",\n  \"lastName\": \"Иванов\"\n}"
+              "raw": "{\n  \"login\": \"newuser\",\n  \"password\": \"password123\",\n  \"email\": \"user@example.com\",\n  \"firstName\": \"Иван\",\n  \"lastName\": \"Иванов\",\n  \"role\": \"USER\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/users/register",
@@ -330,8 +326,34 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"newemail@example.com\",\n  \"firstName\": \"Петр\",\n  \"lastName\": \"Петров\"\n}"
+              "raw": "{\n  \"email\": \"newemail@example.com\",\n  \"firstName\": \"Петр\",\n  \"lastName\": \"Петров\",\n  \"role\": \"ADMIN\"\n}"
             },
+            "url": {
+              "raw": "{{baseUrl}}/users/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "profile"]
+            }
+          }
+        },
+        {
+          "name": "GET профиль без токена (403)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "profile"]
+            }
+          }
+        },
+        {
+          "name": "GET профиль с неверным токеном (403)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Authorization", "value": "Bearer invalid_token_123"}
+            ],
             "url": {
               "raw": "{{baseUrl}}/users/profile",
               "host": ["{{baseUrl}}"],

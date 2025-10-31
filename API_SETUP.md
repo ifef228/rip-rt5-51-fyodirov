@@ -171,12 +171,12 @@ file: [выберите изображение]
 
 #### Шаг 6: Получение иконки корзины
 ```
-GET /api/orders/cart-icon
+GET /api/gas-orders/cart-icon
 ```
 
 #### Шаг 7: Добавление услуги в заявку
 ```
-POST /api/orders/{orderId}/gases
+POST /api/gas-orders/{orderId}/gases
 {
   "gasId": 1,
   "concentration": 0.04,
@@ -186,17 +186,17 @@ POST /api/orders/{orderId}/gases
 
 #### Шаг 8: Формирование заявки
 ```
-PUT /api/orders/{orderId}/form
+PUT /api/gas-orders/{orderId}/form
 ```
 
 #### Шаг 9: Завершение заявки
 ```
-PUT /api/orders/{orderId}/complete
+PUT /api/gas-orders/{orderId}/complete
 ```
 
 #### Шаг 10: Получение списка заявок
 ```
-GET /api/orders?status=COMPLETED&page=0&size=20
+GET /api/gas-orders?status=COMPLETED&page=0&size=20
 ```
 
 ## Проверка работоспособности
@@ -229,7 +229,7 @@ SELECT COUNT(*) FROM gas_order;
 curl http://localhost:8080/api/gases
 
 # Проверка иконки корзины
-curl http://localhost:8080/api/orders/cart-icon
+curl http://localhost:8080/api/gas-orders/cart-icon
 ```
 
 ## Устранение неполадок

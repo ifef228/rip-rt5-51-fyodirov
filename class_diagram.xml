@@ -1,245 +1,268 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" modified="2024-01-12T12:00:00.000Z" agent="5.0" etag="abc123" version="22.1.16" type="device">
-  <diagram name="Gas Temperature Calculator API - Class Diagram" id="class-diagram">
-    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 YaBrowser/25.8.0.0 Safari/537.36" version="28.2.7">
+  <diagram name="Gas API - Layered Class Diagram (Vertical)" id="class-diagram-vertical">
+    <mxGraphModel dx="533901" dy="314715" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1600" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <!-- Entity Layer -->
-        <mxCell id="entity-layer" value="Entity Layer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#E3F2FD;strokeColor=#1976D2;" vertex="1" parent="1">
-          <mxGeometry x="50" y="50" width="200" height="400" as="geometry" />
+        <mxCell id="postman" value="Postman" style="shape=process;whiteSpace=wrap;html=1;rounded=1;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="910" y="40" width="180" height="50" as="geometry" />
         </mxCell>
-
-        <mxCell id="gas-entity" value="Gas&#xa;─────────────────&#xa;- id: Long?&#xa;- name: String&#xa;- formula: String&#xa;- detailedDescription: String&#xa;- imageUrl: String?&#xa;─────────────────&#xa;+ Gas()&#xa;+ copy(): Gas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;" vertex="1" parent="entity-layer">
-          <mxGeometry x="10" y="40" width="180" height="120" as="geometry" />
+        <mxCell id="api-gases" value="API газов" style="shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="130" width="220" height="80" as="geometry" />
         </mxCell>
-
-        <mxCell id="calcorder-entity" value="CalcOrder&#xa;─────────────────&#xa;- id: Long?&#xa;- userId: Long?&#xa;- tempResult: Double?&#xa;- timestamp: LocalDateTime&#xa;- status: OrderStatus&#xa;- description: String?&#xa;─────────────────&#xa;+ CalcOrder()&#xa;+ copy(): CalcOrder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;" vertex="1" parent="entity-layer">
-          <mxGeometry x="10" y="170" width="180" height="140" as="geometry" />
+        <mxCell id="api-orders" value="API заявок (корзина)" style="shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1140" y="120" width="240" height="80" as="geometry" />
         </mxCell>
-
-        <mxCell id="gasorder-entity" value="GasOrder&#xa;─────────────────&#xa;- id: Long?&#xa;- gasId: Long&#xa;- calcOrderId: Long?&#xa;- concentration: Double&#xa;- temperature: Double&#xa;─────────────────&#xa;+ GasOrder()&#xa;+ copy(): GasOrder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;" vertex="1" parent="entity-layer">
-          <mxGeometry x="10" y="320" width="180" height="120" as="geometry" />
+        <mxCell id="api-users" value="API пользователей" style="shape=cloud;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="890" y="120" width="220" height="80" as="geometry" />
         </mxCell>
-
-        <mxCell id="user-entity" value="User&#xa;─────────────────&#xa;- id: Long?&#xa;- login: String&#xa;- password: String&#xa;- email: String?&#xa;- firstName: String?&#xa;- lastName: String?&#xa;─────────────────&#xa;+ User()&#xa;+ copy(): User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;" vertex="1" parent="entity-layer">
-          <mxGeometry x="10" y="450" width="180" height="140" as="geometry" />
+        <mxCell id="edge-pm-g" style="endArrow=classic;html=1;" parent="1" source="postman" target="api-gases" edge="1" />
+        <mxCell id="edge-pm-o" style="endArrow=classic;html=1;" parent="1" source="postman" target="api-orders" edge="1" />
+        <mxCell id="edge-pm-u" style="endArrow=classic;html=1;" parent="1" source="postman" target="api-users" edge="1" />
+        <mxCell id="controllers" value="Контроллеры" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=28;childLayout=stackLayout;horizontal=1;resizeParent=0;" parent="1" vertex="1">
+          <mxGeometry x="710" y="250" width="610" height="200" as="geometry" />
         </mxCell>
-
-        <mxCell id="orderstatus-entity" value="OrderStatus&#xa;─────────────────&#xa;+ DRAFT&#xa;+ COMPLETED&#xa;+ DELETED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;" vertex="1" parent="entity-layer">
-          <mxGeometry x="10" y="600" width="180" height="80" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-1" value="GasApiController&#xa;─────────────────&#xa;- gasService: GasService&#xa;- minioService: MinioService&#xa;─────────────────&#xa;+ getAllGases(): ResponseEntity&#xa;+ getGas(): ResponseEntity&#xa;+ createGas(): ResponseEntity&#xa;+ updateGas(): ResponseEntity&#xa;+ deleteGas(): ResponseEntity&#xa;+ uploadGasImage(): ResponseEntity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;fontSize=10;" vertex="1" parent="controllers">
+          <mxGeometry y="28" width="200" height="172" as="geometry" />
         </mxCell>
-
-        <!-- DTO Layer -->
-        <mxCell id="dto-layer" value="DTO Layer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#E8F5E8;strokeColor=#388E3C;" vertex="1" parent="1">
-          <mxGeometry x="300" y="50" width="200" height="400" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-2" value="UserApiController&#xa;─────────────────&#xa;- userService: UserService&#xa;─────────────────&#xa;+ registerUser(): ResponseEntity&#xa;+ loginUser(): ResponseEntity&#xa;+ logoutUser(): ResponseEntity&#xa;+ getUserProfile(): ResponseEntity&#xa;+ updateUserProfile(): ResponseEntity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;fontSize=11;" vertex="1" parent="controllers">
+          <mxGeometry x="200" y="28" width="200" height="172" as="geometry" />
         </mxCell>
-
-        <mxCell id="apiresponse-dto" value="ApiResponse&lt;T&gt;&#xa;─────────────────&#xa;- success: Boolean&#xa;- message: String?&#xa;- data: T?&#xa;- total: Long?&#xa;- page: Int?&#xa;- size: Int?&#xa;─────────────────&#xa;+ success(): ApiResponse&lt;T&gt;&#xa;+ error(): ApiResponse&lt;T&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;" vertex="1" parent="dto-layer">
-          <mxGeometry x="10" y="40" width="180" height="140" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-3" value="OrderApiController&#xa;─────────────────&#xa;- cartService: CartService&#xa;- gasService: GasService&#xa;─────────────────&#xa;+ getCartIcon(): ResponseEntity&#xa;+ getOrders(): ResponseEntity&#xa;+ getOrder(): ResponseEntity&#xa;+ updateOrder(): ResponseEntity&#xa;+ formOrder(): ResponseEntity&#xa;+ completeOrder(): ResponseEntity&#xa;+ deleteOrder(): ResponseEntity&#xa;+ addGasToOrder(): ResponseEntity&#xa;+ updateGasInOrder(): ResponseEntity&#xa;+ removeGasFromOrder(): ResponseEntity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;fontSize=9;" vertex="1" parent="controllers">
+          <mxGeometry x="400" y="28" width="200" height="172" as="geometry" />
         </mxCell>
-
-        <mxCell id="creategas-dto" value="CreateGasDto&#xa;─────────────────&#xa;- name: String&#xa;- formula: String&#xa;- detailedDescription: String" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;" vertex="1" parent="dto-layer">
-          <mxGeometry x="10" y="190" width="180" height="80" as="geometry" />
+        <mxCell id="edge-api-g-ctrl" style="dashed=1;endArrow=classic;html=1;" parent="1" source="api-gases" target="GasApiController" edge="1" />
+        <mxCell id="edge-api-o-ctrl" style="dashed=1;endArrow=classic;html=1;" parent="1" source="api-orders" target="OrderApiController" edge="1" />
+        <mxCell id="edge-api-u-ctrl" style="dashed=1;endArrow=classic;html=1;" parent="1" source="api-users" target="UserApiController" edge="1" />
+        <mxCell id="services" value="Сервисы" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=28;childLayout=stackLayout;horizontal=1;resizeParent=0;" parent="1" vertex="1">
+          <mxGeometry x="300" y="490" width="1600" height="240" as="geometry" />
         </mxCell>
-
-        <mxCell id="gasresponse-dto" value="GasResponseDto&#xa;─────────────────&#xa;- id: Long&#xa;- name: String&#xa;- formula: String&#xa;- detailedDescription: String&#xa;- imageUrl: String?&#xa;- createdAt: String?&#xa;- updatedAt: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;" vertex="1" parent="dto-layer">
-          <mxGeometry x="10" y="280" width="180" height="120" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-7" value="GasService&#xa;─────────────────&#xa;- gasRepository: GasRepository&#xa;- gasOrderRepository: GasOrderRepository&#xa;─────────────────&#xa;+ getAllGases(): List&lt;GasModel&gt;&#xa;+ searchGases(): List&lt;GasModel&gt;&#xa;+ getGasById(): GasModel?&#xa;+ getGasEntityById(): Gas?&#xa;+ saveGas(): Gas&#xa;+ deleteGas()&#xa;+ getAllGasesWithFilter()&#xa;+ getGasesCount()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;fontSize=10;" vertex="1" parent="services">
+          <mxGeometry y="28" width="200" height="212" as="geometry" />
         </mxCell>
-
-        <mxCell id="orderresponse-dto" value="OrderResponseDto&#xa;─────────────────&#xa;- id: Long&#xa;- userId: Long&#xa;- tempResult: Double?&#xa;- timestamp: LocalDateTime&#xa;- status: String&#xa;- description: String?&#xa;- gasOrders: List&lt;GasOrderResponseDto&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;" vertex="1" parent="dto-layer">
-          <mxGeometry x="10" y="410" width="180" height="140" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-8" value="&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap-mode: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22UserService%26%2310%3B%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%26%2310%3B-%20userRepository%3A%20UserRepository%26%2310%3B%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%26%2310%3B%2B%20registerUser()%3A%20User%26%2310%3B%2B%20authenticateUser()%3A%20String%3F%26%2310%3B%2B%20getUserById()%3A%20User%3F%26%2310%3B%2B%20updateUser()%3A%20User%3F%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3BfillColor%3D%23FCE4EC%3BstrokeColor%3D%23C2185B%3BfontSize%3D11%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22860%22%20y%3D%22500%22%20width%3D%22200%22%20height%3D%22100%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;GasCartService&lt;br&gt;─────────────────&lt;br&gt;- gasOrderRepository: GasOrderRepository&lt;br&gt;- calcOrderRepository: CalcOrderRepository&lt;br&gt;─────────────────&lt;br&gt;+ getActiveCart(): CalcOrder&lt;br&gt;+ addToCart()&lt;br&gt;+ removeFromCart()&lt;br&gt;+ getCartItemsCount(): Int&lt;br&gt;+ isInCart(): Boolean&lt;br&gt;+ clearCart()&lt;br&gt;+ updateOrder()&lt;br&gt;+ formOrder()&lt;br&gt;+ completeOrder()&lt;br&gt;+ addGasToOrder()&lt;br&gt;+ updateGasInOrder()&lt;br&gt;+ removeGasFromOrder()&lt;br&gt;+ getOrdersWithFilter()&lt;br&gt;+ getOrdersCount()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;fontSize=9;" vertex="1" parent="services">
+          <mxGeometry x="200" y="28" width="200" height="212" as="geometry" />
         </mxCell>
-
-        <mxCell id="userresponse-dto" value="UserResponseDto&#xa;─────────────────&#xa;- id: Long&#xa;- login: String&#xa;- email: String?&#xa;- firstName: String?&#xa;- lastName: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;" vertex="1" parent="dto-layer">
-          <mxGeometry x="10" y="560" width="180" height="100" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-10" value="UserService&#xa;─────────────────&#xa;- userRepository: UserRepository&#xa;─────────────────&#xa;+ registerUser(): User&#xa;+ authenticateUser(): String?&#xa;+ getUserById(): User?&#xa;+ updateUser(): User?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;fontSize=11;" vertex="1" parent="services">
+          <mxGeometry x="400" y="28" width="200" height="212" as="geometry" />
         </mxCell>
-
-        <!-- Repository Layer -->
-        <mxCell id="repository-layer" value="Repository Layer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FFF3E0;strokeColor=#F57C00;" vertex="1" parent="1">
-          <mxGeometry x="550" y="50" width="200" height="400" as="geometry" />
+        <mxCell id="edge-ctrl-g-svc" style="endArrow=classic;html=1;" parent="1" source="GasApiController" target="GasService" edge="1" />
+        <mxCell id="edge-ctrl-o-svc" style="endArrow=classic;html=1;" parent="1" source="OrderApiController" target="CartService" edge="1" />
+        <mxCell id="edge-ctrl-u-svc" style="endArrow=classic;html=1;" parent="1" source="UserApiController" target="UserService" edge="1" />
+        <mxCell id="repositories" value="Репозитории" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=28;childLayout=stackLayout;horizontal=1;resizeParent=0;" parent="1" vertex="1">
+          <mxGeometry x="300" y="730" width="1600" height="200" as="geometry" />
         </mxCell>
-
-        <mxCell id="gasrepository" value="GasRepository&#xa;─────────────────&#xa;+ findByNameContainingIgnoreCase()&#xa;+ findByFormulaContainingIgnoreCase()&#xa;+ findByNameAndFormulaContainingIgnoreCase()&#xa;+ countByNameContainingIgnoreCase()&#xa;+ countByFormulaContainingIgnoreCase()&#xa;+ countByNameAndFormulaContainingIgnoreCase()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;" vertex="1" parent="repository-layer">
-          <mxGeometry x="10" y="40" width="180" height="120" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-12" value="GasRepository&#xa;─────────────────&#xa;+ findByNameContainingIgnoreCase()&#xa;+ findByFormulaContainingIgnoreCase()&#xa;+ findByNameAndFormulaContainingIgnoreCase()&#xa;+ countByNameContainingIgnoreCase()&#xa;+ countByFormulaContainingIgnoreCase()&#xa;+ countByNameAndFormulaContainingIgnoreCase()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;fontSize=10;" vertex="1" parent="repositories">
+          <mxGeometry y="28" width="200" height="172" as="geometry" />
         </mxCell>
-
-        <mxCell id="calcorderrepository" value="CalcOrderRepository&#xa;─────────────────&#xa;+ findByUserIdAndStatusAndTempResultIsNull()&#xa;+ findByStatusOrderByTimestampDesc()&#xa;+ findByStatusNotOrderByTimestampDesc()&#xa;+ countByStatus()&#xa;+ countByStatusNot()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;" vertex="1" parent="repository-layer">
-          <mxGeometry x="10" y="170" width="180" height="120" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-13" value="CalcOrderRepository&#xa;─────────────────&#xa;+ findByUserIdAndStatusAndTempResultIsNull()&#xa;+ findByStatusOrderByTimestampDesc()&#xa;+ findByStatusNotOrderByTimestampDesc()&#xa;+ countByStatus()&#xa;+ countByStatusNot()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;fontSize=10;" vertex="1" parent="repositories">
+          <mxGeometry x="200" y="28" width="200" height="172" as="geometry" />
         </mxCell>
-
-        <mxCell id="gasorderrepository" value="GasOrderRepository&#xa;─────────────────&#xa;+ findByCalcOrderId()&#xa;+ findByCalcOrderIdAndGasId()&#xa;+ deleteByCalcOrderId()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;" vertex="1" parent="repository-layer">
-          <mxGeometry x="10" y="300" width="180" height="80" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-14" value="GasOrderRepository&#xa;─────────────────&#xa;+ findByCalcOrderId()&#xa;+ findByCalcOrderIdAndGasId()&#xa;+ deleteByCalcOrderId()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;fontSize=11;" vertex="1" parent="repositories">
+          <mxGeometry x="400" y="28" width="200" height="172" as="geometry" />
         </mxCell>
-
-        <mxCell id="userrepository" value="UserRepository&#xa;─────────────────&#xa;+ findByLogin()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;" vertex="1" parent="repository-layer">
-          <mxGeometry x="10" y="390" width="180" height="60" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-15" value="UserRepository&#xa;─────────────────&#xa;+ findByLogin()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;fontSize=11;" vertex="1" parent="repositories">
+          <mxGeometry x="600" y="28" width="200" height="172" as="geometry" />
         </mxCell>
-
-        <!-- Service Layer -->
-        <mxCell id="service-layer" value="Service Layer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#FCE4EC;strokeColor=#C2185B;" vertex="1" parent="1">
-          <mxGeometry x="800" y="50" width="200" height="400" as="geometry" />
+        <mxCell id="edge-svc-g-repo" style="endArrow=classic;html=1;" parent="1" source="GasService" target="GasRepository" edge="1" />
+        <mxCell id="edge-svc-o-repo1" style="endArrow=classic;html=1;" parent="1" source="CartService" target="CalcOrderRepository" edge="1" />
+        <mxCell id="edge-svc-o-repo2" style="endArrow=classic;html=1;" parent="1" source="CartService" target="GasOrderRepository" edge="1" />
+        <mxCell id="edge-svc-u-repo" style="endArrow=classic;html=1;" parent="1" source="UserService" target="UserRepository" edge="1" />
+        <mxCell id="dtos" value="DTO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=28;childLayout=stackLayout;horizontal=1;resizeParent=0;" parent="1" vertex="1">
+          <mxGeometry x="300" y="970" width="1600" height="220" as="geometry" />
         </mxCell>
-
-        <mxCell id="gasservice" value="GasService&#xa;─────────────────&#xa;- gasRepository: GasRepository&#xa;- gasOrderRepository: GasOrderRepository&#xa;─────────────────&#xa;+ getAllGases(): List&lt;GasModel&gt;&#xa;+ searchGases(): List&lt;GasModel&gt;&#xa;+ getGasById(): GasModel?&#xa;+ getGasEntityById(): Gas?&#xa;+ saveGas(): Gas&#xa;+ deleteGas()&#xa;+ getAllGasesWithFilter()&#xa;+ getGasesCount()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;" vertex="1" parent="service-layer">
-          <mxGeometry x="10" y="40" width="180" height="160" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-20" value="UserResponseDto&#xa;─────────────────&#xa;- id: Long&#xa;- login: String&#xa;- email: String?&#xa;- firstName: String?&#xa;- lastName: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;fontSize=11;" vertex="1" parent="dtos">
+          <mxGeometry y="28" width="200" height="192" as="geometry" />
         </mxCell>
-
-        <mxCell id="cartservice" value="CartService&#xa;─────────────────&#xa;- gasOrderRepository: GasOrderRepository&#xa;- calcOrderRepository: CalcOrderRepository&#xa;─────────────────&#xa;+ getActiveCart(): CalcOrder&#xa;+ addToCart()&#xa;+ removeFromCart()&#xa;+ getCartItemsCount(): Int&#xa;+ isInCart(): Boolean&#xa;+ clearCart()&#xa;+ updateOrder()&#xa;+ formOrder()&#xa;+ completeOrder()&#xa;+ addGasToOrder()&#xa;+ updateGasInOrder()&#xa;+ removeGasFromOrder()&#xa;+ getOrdersWithFilter()&#xa;+ getOrdersCount()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;" vertex="1" parent="service-layer">
-          <mxGeometry x="10" y="210" width="180" height="200" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-19" value="OrderResponseDto&#xa;─────────────────&#xa;- id: Long&#xa;- userId: Long&#xa;- tempResult: Double?&#xa;- timestamp: LocalDateTime&#xa;- status: String&#xa;- description: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;fontSize=11;" vertex="1" parent="dtos">
+          <mxGeometry x="200" y="28" width="200" height="192" as="geometry" />
         </mxCell>
-
-        <mxCell id="userservice" value="UserService&#xa;─────────────────&#xa;- userRepository: UserRepository&#xa;─────────────────&#xa;+ registerUser(): User&#xa;+ authenticateUser(): String?&#xa;+ getUserById(): User?&#xa;+ updateUser(): User?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;" vertex="1" parent="service-layer">
-          <mxGeometry x="10" y="420" width="180" height="100" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-18" value="GasResponseDto&#xa;─────────────────&#xa;- id: Long&#xa;- name: String&#xa;- formula: String&#xa;- detailedDescription: String&#xa;- imageUrl: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;fontSize=11;" vertex="1" parent="dtos">
+          <mxGeometry x="400" y="28" width="200" height="192" as="geometry" />
         </mxCell>
-
-        <mxCell id="minioservice" value="MinioService&#xa;─────────────────&#xa;- minioClient: MinioClient&#xa;─────────────────&#xa;+ uploadImage(): String&#xa;+ deleteImage()&#xa;+ getImageUrl(): String&#xa;+ extractFileNameFromUrl()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;" vertex="1" parent="service-layer">
-          <mxGeometry x="10" y="530" width="180" height="100" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-17" value="CreateGasDto&#xa;─────────────────&#xa;- name: String&#xa;- formula: String&#xa;- detailedDescription: String" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;fontSize=11;" vertex="1" parent="dtos">
+          <mxGeometry x="600" y="28" width="200" height="192" as="geometry" />
         </mxCell>
-
-        <!-- Controller Layer -->
-        <mxCell id="controller-layer" value="Controller Layer" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#F3E5F5;strokeColor=#7B1FA2;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="50" width="200" height="400" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-16" value="ApiResponse&lt;T&gt;&#xa;─────────────────&#xa;- success: Boolean&#xa;- message: String?&#xa;- data: T?&#xa;- total: Long?&#xa;- page: Int?&#xa;- size: Int?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E8;strokeColor=#388E3C;fontSize=11;" vertex="1" parent="dtos">
+          <mxGeometry x="800" y="28" width="200" height="192" as="geometry" />
         </mxCell>
-
-        <mxCell id="gasapicontroller" value="GasApiController&#xa;─────────────────&#xa;- gasService: GasService&#xa;- minioService: MinioService&#xa;─────────────────&#xa;+ getAllGases(): ResponseEntity&#xa;+ getGas(): ResponseEntity&#xa;+ createGas(): ResponseEntity&#xa;+ updateGas(): ResponseEntity&#xa;+ deleteGas(): ResponseEntity&#xa;+ uploadGasImage(): ResponseEntity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;" vertex="1" parent="controller-layer">
-          <mxGeometry x="10" y="40" width="180" height="140" as="geometry" />
+        <mxCell id="entities" value="Сущности" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=28;childLayout=stackLayout;horizontal=1;resizeParent=0;" parent="1" vertex="1">
+          <mxGeometry x="300" y="1230" width="1600" height="220" as="geometry" />
         </mxCell>
-
-        <mxCell id="orderapicontroller" value="OrderApiController&#xa;─────────────────&#xa;- cartService: CartService&#xa;- gasService: GasService&#xa;─────────────────&#xa;+ getCartIcon(): ResponseEntity&#xa;+ getOrders(): ResponseEntity&#xa;+ getOrder(): ResponseEntity&#xa;+ updateOrder(): ResponseEntity&#xa;+ formOrder(): ResponseEntity&#xa;+ completeOrder(): ResponseEntity&#xa;+ deleteOrder(): ResponseEntity&#xa;+ addGasToOrder(): ResponseEntity&#xa;+ updateGasInOrder(): ResponseEntity&#xa;+ removeGasFromOrder(): ResponseEntity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;" vertex="1" parent="controller-layer">
-          <mxGeometry x="10" y="190" width="180" height="180" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-21" value="Gas&#xa;─────────────────&#xa;- id: Long?&#xa;- name: String&#xa;- formula: String&#xa;- detailedDescription: String&#xa;- imageUrl: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=11;" vertex="1" parent="entities">
+          <mxGeometry y="28" width="200" height="192" as="geometry" />
         </mxCell>
-
-        <mxCell id="userapicontroller" value="UserApiController&#xa;─────────────────&#xa;- userService: UserService&#xa;─────────────────&#xa;+ registerUser(): ResponseEntity&#xa;+ loginUser(): ResponseEntity&#xa;+ logoutUser(): ResponseEntity&#xa;+ getUserProfile(): ResponseEntity&#xa;+ updateUserProfile(): ResponseEntity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;" vertex="1" parent="controller-layer">
-          <mxGeometry x="10" y="380" width="180" height="120" as="geometry" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-22" value="CalcOrder&#xa;─────────────────&#xa;- id: Long?&#xa;- userId: Long?&#xa;- tempResult: Double?&#xa;- timestamp: LocalDateTime&#xa;- status: OrderStatus&#xa;- description: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=11;" vertex="1" parent="entities">
+          <mxGeometry x="200" y="28" width="200" height="192" as="geometry" />
         </mxCell>
-
-        <!-- Relationships -->
-        <!-- Gas to GasOrder -->
-        <mxCell id="gas-to-gasorder" value="1..*" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gas-entity" target="gasorder-entity">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-23" value="GasOrder&#xa;─────────────────&#xa;- id: Long?&#xa;- gasId: Long&#xa;- calcOrderId: Long?&#xa;- concentration: Double&#xa;- temperature: Double" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=11;" vertex="1" parent="entities">
+          <mxGeometry x="400" y="28" width="200" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-24" value="User&#xa;─────────────────&#xa;- id: Long?&#xa;- login: String&#xa;- password: String&#xa;- email: String?&#xa;- firstName: String?&#xa;- lastName: String?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=11;" vertex="1" parent="entities">
+          <mxGeometry x="600" y="28" width="200" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-25" value="OrderStatus&#xa;─────────────────&#xa;+ DRAFT&#xa;+ COMPLETED&#xa;+ DELETED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=11;" vertex="1" parent="entities">
+          <mxGeometry x="800" y="28" width="200" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="База данных" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=28;childLayout=stackLayout;horizontal=1;resizeParent=0;" parent="1" vertex="1">
+          <mxGeometry x="300" y="1530" width="1600" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-44" value="gas_order" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="db">
+          <mxGeometry y="28" width="223" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-45" value="id &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;int64" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-44">
+          <mxGeometry y="30" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-46" value="gas_id&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;bigint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-44">
+          <mxGeometry y="60" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-47" value="calk_order_id&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;bigint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-44">
+          <mxGeometry y="90" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-48" value="concentration&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar(32)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-44">
+          <mxGeometry y="120" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-49" value="temperature&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-44">
+          <mxGeometry y="150" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-50" value="calc_order" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="db">
+          <mxGeometry x="223" y="28" width="223" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-51" value="id &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;b&lt;/span&gt;igint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-50">
+          <mxGeometry y="30" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-52" value="user_id&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;b&lt;/span&gt;igint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-50">
+          <mxGeometry y="60" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-53" value="temp_result&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;i&lt;/span&gt;nt" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-50">
+          <mxGeometry y="90" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-54" value="calculation_date&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar(32)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-50">
+          <mxGeometry y="120" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-37" value="gas" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="db">
+          <mxGeometry x="446" y="28" width="223" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-38" value="id &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;b&lt;/span&gt;igint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-37">
+          <mxGeometry y="30" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-39" value="name&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;varchar(16)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-37">
+          <mxGeometry y="60" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-40" value="formula&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar(16)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-37">
+          <mxGeometry y="90" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-41" value="detailed_description&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar(32)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-37">
+          <mxGeometry y="120" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-42" value="image_url&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar(1024)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-37">
+          <mxGeometry y="150" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-43" value="author_id&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar(1024)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-37">
+          <mxGeometry y="180" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-55" value="user" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="db">
+          <mxGeometry x="669" y="28" width="223" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-56" value="id &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;bigint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-55">
+          <mxGeometry y="30" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-57" value="password&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;v&lt;/span&gt;archar(1024)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-55">
+          <mxGeometry y="60" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-58" value="login&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar(64)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-55">
+          <mxGeometry y="90" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l7qsNapnW7yNoVMdIm74-59" value="role&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;varchar(16)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="l7qsNapnW7yNoVMdIm74-55">
+          <mxGeometry y="120" width="223" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-gas-gasorders" value="1  ..  0..*" style="endArrow=classic;html=1;" parent="1" source="tbl-gases" target="tbl-gas-orders" edge="1" />
+        <mxCell id="edge-calcorder-gasorders" value="1  ..  0..*" style="endArrow=classic;html=1;" parent="1" source="tbl-calc-orders" target="tbl-gas-orders" edge="1" />
+        <mxCell id="edge-user-calcorder" value="0..*  ..  1" style="endArrow=classic;html=1;dashed=1;" parent="1" source="tbl-users" target="tbl-calc-orders" edge="1" />
+        <mxCell id="l7qsNapnW7yNoVMdIm74-4" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.522;exitY=0.972;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.4;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="api-gases" target="l7qsNapnW7yNoVMdIm74-1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="250" y="110" as="sourcePoint" />
-            <mxPoint x="300" y="60" as="targetPoint" />
+            <mxPoint x="630" y="320" as="sourcePoint" />
+            <mxPoint x="680" y="270" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- CalcOrder to GasOrder -->
-        <mxCell id="calcorder-to-gasorder" value="1..*" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="calcorder-entity" target="gasorder-entity">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.514;exitY=0.929;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api-orders" target="l7qsNapnW7yNoVMdIm74-3">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="250" y="240" as="sourcePoint" />
-            <mxPoint x="300" y="190" as="targetPoint" />
+            <mxPoint x="860" y="240" as="sourcePoint" />
+            <mxPoint x="910" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- User to CalcOrder -->
-        <mxCell id="user-to-calcorder" value="1..*" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="user-entity" target="calcorder-entity">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-72" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.55;exitY=0.95;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api-users" target="l7qsNapnW7yNoVMdIm74-2">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="250" y="520" as="sourcePoint" />
-            <mxPoint x="300" y="470" as="targetPoint" />
+            <mxPoint x="1423" y="220" as="sourcePoint" />
+            <mxPoint x="1370" y="304" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- Service Dependencies -->
-        <!-- GasService to GasRepository -->
-        <mxCell id="gasservice-to-gasrepository" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gasservice" target="gasrepository">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-73" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l7qsNapnW7yNoVMdIm74-1" target="l7qsNapnW7yNoVMdIm74-8">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="800" y="130" as="sourcePoint" />
-            <mxPoint x="750" y="80" as="targetPoint" />
+            <mxPoint x="420" y="340" as="sourcePoint" />
+            <mxPoint x="495" y="412" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- CartService to CalcOrderRepository -->
-        <mxCell id="cartservice-to-calcorderrepository" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="cartservice" target="calcorderrepository">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-74" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.425;exitY=0.994;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="l7qsNapnW7yNoVMdIm74-2" target="l7qsNapnW7yNoVMdIm74-10">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="800" y="310" as="sourcePoint" />
-            <mxPoint x="750" y="260" as="targetPoint" />
+            <mxPoint x="950" y="460" as="sourcePoint" />
+            <mxPoint x="740" y="528" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- UserService to UserRepository -->
-        <mxCell id="userservice-to-userrepository" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="userservice" target="userrepository">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-76" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="l7qsNapnW7yNoVMdIm74-7">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="800" y="470" as="sourcePoint" />
-            <mxPoint x="750" y="420" as="targetPoint" />
+            <mxPoint x="1210" y="450" as="sourcePoint" />
+            <mxPoint x="960" y="555" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- Controller Dependencies -->
-        <!-- GasApiController to GasService -->
-        <mxCell id="gasapicontroller-to-gasservice" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gasapicontroller" target="gasservice">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-77" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.66;exitY=0.988;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="l7qsNapnW7yNoVMdIm74-3" target="l7qsNapnW7yNoVMdIm74-8">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="110" as="sourcePoint" />
-            <mxPoint x="1000" y="60" as="targetPoint" />
+            <mxPoint x="1680" y="470" as="sourcePoint" />
+            <mxPoint x="970" y="623" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- OrderApiController to CartService -->
-        <mxCell id="orderapicontroller-to-cartservice" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="orderapicontroller" target="cartservice">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-78" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="l7qsNapnW7yNoVMdIm74-3" target="l7qsNapnW7yNoVMdIm74-10">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="280" as="sourcePoint" />
-            <mxPoint x="1000" y="230" as="targetPoint" />
+            <mxPoint x="1622" y="620" as="sourcePoint" />
+            <mxPoint x="1080" y="769" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- UserApiController to UserService -->
-        <mxCell id="userapicontroller-to-userservice" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="userapicontroller" target="userservice">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-79" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.98;exitY=0.608;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="l7qsNapnW7yNoVMdIm74-10" target="l7qsNapnW7yNoVMdIm74-15">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="440" as="sourcePoint" />
-            <mxPoint x="1000" y="390" as="targetPoint" />
+            <mxPoint x="1340" y="550" as="sourcePoint" />
+            <mxPoint x="980" y="686" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- DTO Usage -->
-        <!-- GasApiController to CreateGasDto -->
-        <mxCell id="gasapicontroller-to-creategasdto" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="gasapicontroller" target="creategas-dto">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-84" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="l7qsNapnW7yNoVMdIm74-8" target="l7qsNapnW7yNoVMdIm74-13">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="110" as="sourcePoint" />
-            <mxPoint x="500" y="60" as="targetPoint" />
+            <mxPoint x="1340" y="550" as="sourcePoint" />
+            <mxPoint x="980" y="686" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- OrderApiController to OrderResponseDto -->
-        <mxCell id="orderapicontroller-to-orderresponsedto" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="orderapicontroller" target="orderresponse-dto">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-89" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.98;exitY=0.608;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="280" as="sourcePoint" />
-            <mxPoint x="500" y="230" as="targetPoint" />
+            <mxPoint x="910" y="670" as="sourcePoint" />
+            <mxPoint x="969" y="781" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- UserApiController to UserResponseDto -->
-        <mxCell id="userapicontroller-to-userresponsedto" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="userapicontroller" target="userresponse-dto">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-90" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.698;entryY=0.171;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="postman" target="api-gases">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="440" as="sourcePoint" />
-            <mxPoint x="500" y="390" as="targetPoint" />
+            <mxPoint x="851" y="118" as="sourcePoint" />
+            <mxPoint x="850" y="200" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- API Response Usage -->
-        <!-- GasApiController to ApiResponse -->
-        <mxCell id="gasapicontroller-to-apiresponse" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="gasapicontroller" target="apiresponse-dto">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-91" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.301;entryY=0.146;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="postman" target="api-orders">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="110" as="sourcePoint" />
-            <mxPoint x="500" y="60" as="targetPoint" />
+            <mxPoint x="1326" y="100" as="sourcePoint" />
+            <mxPoint x="1170" y="154" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- OrderApiController to ApiResponse -->
-        <mxCell id="orderapicontroller-to-apiresponse" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="orderapicontroller" target="apiresponse-dto">
+        <mxCell id="l7qsNapnW7yNoVMdIm74-92" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.514;entryY=0.163;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="postman" target="api-users">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="280" as="sourcePoint" />
-            <mxPoint x="500" y="230" as="targetPoint" />
+            <mxPoint x="1080" y="220" as="sourcePoint" />
+            <mxPoint x="1202" y="287" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-
-        <!-- UserApiController to ApiResponse -->
-        <mxCell id="userapicontroller-to-apiresponse" value="uses" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="userapicontroller" target="apiresponse-dto">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="1050" y="440" as="sourcePoint" />
-            <mxPoint x="500" y="390" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-
       </root>
     </mxGraphModel>
   </diagram>

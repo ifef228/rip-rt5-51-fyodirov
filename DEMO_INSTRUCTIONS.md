@@ -34,19 +34,19 @@ cd /Users/ifef/Desktop/mgtu/5сем/rip-rt5-51-fyodirov/gas
 
 #### 1️⃣ GET список заявок (фильтр по дате и статусу)
 ```
-GET /api/orders?status=COMPLETED&formedDateFrom=2024-01-01T00:00:00&formedDateTo=2024-12-31T23:59:59&page=0&size=20
+GET /api/gas-orders?status=COMPLETED&formedDateFrom=2024-01-01T00:00:00&formedDateTo=2024-12-31T23:59:59&page=0&size=20
 ```
 **Демонстрирует:** Фильтрацию по статусу и дате, пагинацию
 
 #### 2️⃣ GET иконка корзины
 ```
-GET /api/orders/cart-icon
+GET /api/gas-orders/cart-icon
 ```
 **Демонстрирует:** Получение информации о корзине
 
 #### 3️⃣ DELETE удалить заявку
 ```
-DELETE /api/orders/1
+DELETE /api/gas-orders/1
 ```
 **Демонстрирует:** Логическое удаление заявки
 
@@ -85,7 +85,7 @@ file: [выберите изображение .jpg/.png]
 
 #### 7️⃣ POST добавить услугу в заявку
 ```json
-POST /api/orders/1/gases
+POST /api/gas-orders/1/gases
 {
   "gasId": 1,
   "concentration": 0.04,
@@ -96,7 +96,7 @@ POST /api/orders/1/gases
 
 #### 8️⃣ POST добавить другую услугу в заявку
 ```json
-POST /api/orders/1/gases
+POST /api/gas-orders/1/gases
 {
   "gasId": 2,
   "concentration": 0.21,
@@ -107,7 +107,7 @@ POST /api/orders/1/gases
 
 #### 9️⃣ GET иконка корзины (проверить обновление)
 ```
-GET /api/orders/cart-icon
+GET /api/gas-orders/cart-icon
 ```
 **Демонстрирует:** Обновление счетчика корзины (2 товара)
 
@@ -221,7 +221,7 @@ Authorization: Bearer mock_token_1
 
 #### 2️⃣1️⃣ GET список заявок (проверить изменения)
 ```
-GET /api/orders?status=COMPLETED&page=0&size=20
+GET /api/gas-orders?status=COMPLETED&page=0&size=20
 ```
 **Демонстрирует:** Обновленный список с завершенной заявкой
 
