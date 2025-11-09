@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="739b7f2c-f06b-40d8-80b2-31af7ee2fcc0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/gas/src/main/kotlin/ru/mstu/yandex/gas/configuration/ThymeleafConfiguration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atmosphere-calculator/.screen-graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/atmosphere-calculator/.screen-graph.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atmosphere-calculator/src/data/mockOrderData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/atmosphere-calculator/src/data/mockOrderData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atmosphere-calculator/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/atmosphere-calculator/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atmosphere-calculator/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/atmosphere-calculator/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atmosphere-calculator/src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/atmosphere-calculator/src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atmosphere-calculator/src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/atmosphere-calculator/src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atmosphere-calculator/src/screens/TemperatureCalculation/TemperatureCalculation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/atmosphere-calculator/src/screens/TemperatureCalculation/TemperatureCalculation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gas/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/gas/build.gradle" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="33HmVQgdXkkiVbFGZvLhqs1z1OT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "lab1-design",
+    "last_opened_file_path": "/Users/ifef/Desktop/mgtu/5сем/rip-rt5-51-fyodirov",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="739b7f2c-f06b-40d8-80b2-31af7ee2fcc0" name="Changes" comment="" />
+      <created>1758982394345</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1758982394345</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TerminalProjectNonSharedOptionsProvider">
+    <envs>
+      <env key="GSID" value="IDE:idea:9bbe839e30a74bcfb95e615cda580559 IDETERM:idea:9bbe839e30a74bcfb95e615cda580559" />
+    </envs>
+  </component>
+</project>
