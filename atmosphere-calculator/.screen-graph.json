@@ -1,107 +1,90 @@
 {
   "nodes": [
     {
-      "id": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
-      "label": "AtmosphericTemperatureCalculator",
+      "id": "src/pages/Home.tsx",
+      "label": "Home",
       "routes": [
         "/"
       ],
-      "dataModelId": "14:69",
       "isRoot": true
     },
     {
-      "id": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx",
-      "label": "AtmosphericGasDetail",
+      "id": "src/pages/GasesList.tsx",
+      "label": "GasesList",
       "routes": [
-        "/atmospheric-gas/:id"
+        "/gases"
       ]
     },
     {
-      "id": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
-      "label": "TemperatureCalculation",
+      "id": "src/pages/GasDetail.tsx",
+      "label": "GasDetail",
       "routes": [
-        "/temperature-calculation"
+        "/gases/:id"
       ]
     }
   ],
   "edges": [
     {
-      "id": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx:51:4-to-src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
-      "source": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
-      "target": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
+      "id": "src/pages/Home.tsx:84:14-to-src/pages/GasesList.tsx",
+      "source": "src/pages/Home.tsx",
+      "target": "src/pages/GasesList.tsx",
       "data": {
-        "viaRoute": "/temperature-calculation",
+        "viaRoute": "/gases",
         "trigger": {
-          "element": "navigate(\"/temperature-calculation\")",
-          "line": 51,
-          "endLine": 51,
-          "column": 4,
-          "endColumn": 40,
-          "sourceFile": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx"
+          "element": "<Button\n                as={Link}\n                to=\"/gases\"\n                variant=\"light\"\n                size=\"lg\"\n                className=\"px-5\"\n                style={{\n                  backgroundColor: '#fff',\n                  color: '#000',\n                  border: '2px solid #000',\n                  fontWeight: '500',\n                  fontSize: '1.1rem'\n                }}\n              >\n                Перейти к каталогу газов\n              </Button>",
+          "line": 84,
+          "endLine": 99,
+          "column": 14,
+          "endColumn": 23,
+          "sourceFile": "src/pages/Home.tsx"
         }
       }
     },
     {
-      "id": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx:136:33-to-src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
-      "source": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx",
-      "target": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "id": "src/pages/GasDetail.tsx:77:14-to-src/pages/GasesList.tsx",
+      "source": "src/pages/GasDetail.tsx",
+      "target": "src/pages/GasesList.tsx",
       "data": {
-        "viaRoute": "/",
+        "viaRoute": "/gases",
         "trigger": {
-          "element": "navigate(\"/\")",
-          "line": 136,
-          "endLine": 136,
-          "column": 33,
-          "endColumn": 46,
-          "sourceFile": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx"
+          "element": "<Button as={Link} to=\"/gases\" variant=\"primary\">\n                Вернуться к списку\n              </Button>",
+          "line": 77,
+          "endLine": 79,
+          "column": 14,
+          "endColumn": 23,
+          "sourceFile": "src/pages/GasDetail.tsx"
         }
       }
     },
     {
-      "id": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx:145:4-to-src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
-      "source": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx",
-      "target": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "id": "src/pages/GasDetail.tsx:96:12-to-src/pages/GasesList.tsx",
+      "source": "src/pages/GasDetail.tsx",
+      "target": "src/pages/GasesList.tsx",
       "data": {
-        "viaRoute": "/",
+        "viaRoute": "/gases",
         "trigger": {
-          "element": "navigate(\"/\")",
-          "line": 145,
-          "endLine": 145,
-          "column": 4,
-          "endColumn": 17,
-          "sourceFile": "src/screens/AtmosphericGasDetail/AtmosphericGasDetail.tsx"
+          "element": "<Button\n              as={Link}\n              to=\"/gases\"\n              variant=\"outline-primary\"\n              className=\"mb-4\"\n            >\n              ← Назад к списку\n            </Button>",
+          "line": 96,
+          "endLine": 103,
+          "column": 12,
+          "endColumn": 21,
+          "sourceFile": "src/pages/GasDetail.tsx"
         }
       }
     },
     {
-      "id": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx:47:4-to-src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
-      "source": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
-      "target": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
+      "id": "src/pages/GasDetail.tsx:207:12-to-src/pages/GasesList.tsx",
+      "source": "src/pages/GasDetail.tsx",
+      "target": "src/pages/GasesList.tsx",
       "data": {
-        "viaRoute": "/",
+        "viaRoute": "/gases",
         "trigger": {
-          "element": "navigate(\"/\")",
-          "line": 47,
-          "endLine": 47,
-          "column": 4,
-          "endColumn": 17,
-          "sourceFile": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx"
-        }
-      }
-    },
-    {
-      "id": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx:180:27-to-src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
-      "source": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx",
-      "target": "src/screens/AtmosphericTemperatureCalculator/AtmosphericTemperatureCalculator.tsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "navigate(\"/\")",
-          "line": 180,
-          "endLine": 180,
-          "column": 27,
-          "endColumn": 40,
-          "sourceFile": "src/screens/TemperatureCalculation/TemperatureCalculation.tsx"
+          "element": "<Button\n              as={Link}\n              to=\"/gases\"\n              variant=\"primary\"\n              size=\"lg\"\n            >\n              Вернуться к каталогу\n            </Button>",
+          "line": 207,
+          "endLine": 214,
+          "column": 12,
+          "endColumn": 21,
+          "sourceFile": "src/pages/GasDetail.tsx"
         }
       }
     }
