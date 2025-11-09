@@ -143,8 +143,8 @@ const GasesList: FC = () => {
         <Col>
           <Form onSubmit={handleApplyFilters} className="bg-light p-4 rounded shadow-sm">
             <h5 className="mb-3" style={{ fontWeight: '600', color: '#000' }}>Фильтры поиска</h5>
-            <Row>
-              <Col md={5}>
+            <Row className="align-items-end">
+              <Col md={4}>
                 <Form.Group className="mb-3">
                   <Form.Label>Название газа</Form.Label>
                   <Form.Control
@@ -155,7 +155,7 @@ const GasesList: FC = () => {
                   />
                 </Form.Group>
               </Col>
-              <Col md={5}>
+              <Col md={4}>
                 <Form.Group className="mb-3">
                   <Form.Label>Формула</Form.Label>
                   <Form.Control
@@ -166,12 +166,17 @@ const GasesList: FC = () => {
                   />
                 </Form.Group>
               </Col>
-              <Col md={2} className="d-flex align-items-end">
+              <Col md={4}>
                 <div className="d-flex gap-2 mb-3">
-                  <Button type="submit" variant="primary">
+                  <Button type="submit" variant="primary" className="flex-fill">
                     Применить
                   </Button>
-                  <Button type="button" variant="secondary" onClick={handleResetFilters}>
+                  <Button
+                    type="button"
+                    variant="outline-primary"
+                    onClick={handleResetFilters}
+                    className="flex-fill"
+                  >
                     Сбросить
                   </Button>
                 </div>
