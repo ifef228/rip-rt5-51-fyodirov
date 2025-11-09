@@ -41,27 +41,32 @@
         }
 
         .gas_btn {
-            background: #ff6900;
-            color: #ffffff;
+            background: #FCE000;
+            color: #000000;
             border: none;
             border-radius: 6px;
             font-weight: 500;
             transition: all 0.2s ease;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            min-height: 50px;
         }
 
         .gas_btn:hover {
-            background: #e55a00;
+            background: #E6CA00;
             transform: translateY(-1px);
         }
 
         .gas_btn_secondary {
             background: #ffffff;
-            color: #ff6900;
-            border: 1px solid #ff6900;
+            color: #FCE000;
+            border: 1px solid #FCE000;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
         }
 
         .gas_btn_secondary:hover {
-            background: #fff5f0;
+            background: #FFFDF0;
         }
 
         .gas_header {
@@ -76,17 +81,17 @@
         }
 
         .gas_search:focus {
-            border-color: #ff6900;
-            box-shadow: 0 0 0 2px rgba(255, 105, 0, 0.1);
+            border-color: #FCE000;
+            box-shadow: 0 0 0 2px rgba(252, 224, 0, 0.1);
         }
 
         .gas_cart {
-            background: #ff6900;
-            color: #ffffff;
+            background: #FCE000;
+            color: #000000;
         }
 
         .gas_cart:hover {
-            background: #e55a00;
+            background: #E6CA00;
         }
 
         .gas_text_primary {
@@ -100,6 +105,21 @@
         .gas_text_muted {
             color: #999999;
         }
+
+        /* Фиксированные размеры для картинок */
+        .gas-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Логотип в хедере */
+        .header-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -111,7 +131,7 @@
                     AtmosphericTempCalc
                 </h1>
                 <img
-                    class="w-[110px] h-[110px] object-cover"
+                    class="header-logo"
                     alt="AtmosphereTemp Logo"
                     src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-4.png"
                 />
@@ -129,8 +149,8 @@
                                 placeholder="Поиск атмосферного газа"
                             />
                         </div>
-                        <button class="w-[60px] h-[60px] gas_btn flex items-center justify-center">
-                            <span class="text-2xl">🔍</span>
+                        <button class="w-[80px] h-[80px] gas_btn flex items-center justify-center">
+                            <span class="text-3xl">🔍</span>
                         </button>
                     </div>
                 </div>
@@ -147,7 +167,7 @@
                             <!-- Image Section -->
                             <div class="flex-shrink-0">
                                 <img
-                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    class="gas-image"
                                     alt="CO₂ (Углекислый газ)"
                                     src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-5.png"
                                 />
@@ -170,8 +190,8 @@
 
                             <!-- Button Section -->
                             <div class="flex-shrink-0">
-                                <button class="gas_btn w-[120px] h-[50px]">
-                                    <span class="text-xs font-medium text-center leading-tight">
+                                <button class="gas_btn w-[160px] h-[65px]">
+                                    <span class="text-base font-medium text-center leading-tight">
                                         в корзину
                                     </span>
                                 </button>
@@ -185,7 +205,7 @@
                             <!-- Image Section -->
                             <div class="flex-shrink-0">
                                 <img
-                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    class="gas-image"
                                     alt="O₂ (Кислород)"
                                     src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-12.png"
                                 />
@@ -208,8 +228,8 @@
 
                             <!-- Button Section -->
                             <div class="flex-shrink-0">
-                                <button class="gas_btn w-[120px] h-[50px]">
-                                    <span class="text-xs font-medium text-center leading-tight">
+                                <button class="gas_btn w-[160px] h-[65px]">
+                                    <span class="text-base font-medium text-center leading-tight">
                                         в корзину
                                     </span>
                                 </button>
@@ -223,7 +243,7 @@
                             <!-- Image Section -->
                             <div class="flex-shrink-0">
                                 <img
-                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    class="gas-image"
                                     alt="Ar (Аргон)"
                                     src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-13.png"
                                 />
@@ -246,8 +266,8 @@
 
                             <!-- Button Section -->
                             <div class="flex-shrink-0">
-                                <button class="gas_btn w-[120px] h-[50px]">
-                                    <span class="text-xs font-medium text-center leading-tight">
+                                <button class="gas_btn w-[160px] h-[65px]">
+                                    <span class="text-base font-medium text-center leading-tight">
                                         в корзину
                                     </span>
                                 </button>
@@ -261,7 +281,7 @@
                             <!-- Image Section -->
                             <div class="flex-shrink-0">
                                 <img
-                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    class="gas-image"
                                     alt="N₂ (Азот)"
                                     src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-14.png"
                                 />
@@ -284,8 +304,8 @@
 
                             <!-- Button Section -->
                             <div class="flex-shrink-0">
-                                <button class="gas_btn w-[120px] h-[50px]">
-                                    <span class="text-xs font-medium text-center leading-tight">
+                                <button class="gas_btn w-[160px] h-[65px]">
+                                    <span class="text-base font-medium text-center leading-tight">
                                         в корзину
                                     </span>
                                 </button>
@@ -299,7 +319,7 @@
                             <!-- Image Section -->
                             <div class="flex-shrink-0">
                                 <img
-                                    class="w-[120px] h-[120px] object-cover rounded-lg"
+                                    class="gas-image"
                                     alt="H₂O (Водяной пар)"
                                     src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-15.png"
                                 />
@@ -322,8 +342,8 @@
 
                             <!-- Button Section -->
                             <div class="flex-shrink-0">
-                                <button class="gas_btn w-[120px] h-[50px]">
-                                    <span class="text-xs font-medium text-center leading-tight">
+                                <button class="gas_btn w-[160px] h-[65px]">
+                                    <span class="text-base font-medium text-center leading-tight">
                                         в корзину
                                     </span>
                                 </button>
@@ -338,8 +358,8 @@
         <div class="fixed bottom-6 right-6 z-50">
             <div class="relative">
                 <!-- Cart Icon -->
-                <div class="gas_cart w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center hover:scale-110">
-                    <span class="text-2xl">🛒</span>
+                <div class="gas_cart w-[80px] h-[80px] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center hover:scale-110">
+                    <span class="text-3xl">🛒</span>
                 </div>
 
                 <!-- Cart Count Badge -->
@@ -358,7 +378,7 @@
             });
         });
 
-        document.querySelector('.bg-\\[\\#dff0a5\\]').addEventListener('click', function() {
+        document.querySelector('.gas_cart').addEventListener('click', function() {
             alert('Переход на страницу расчета');
         });
     </script>

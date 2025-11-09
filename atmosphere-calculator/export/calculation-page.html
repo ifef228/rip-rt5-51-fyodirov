@@ -41,27 +41,32 @@
         }
 
         .gas_btn {
-            background: #ff6900;
-            color: #ffffff;
+            background: #FCE000;
+            color: #000000;
             border: none;
             border-radius: 6px;
             font-weight: 500;
             transition: all 0.2s ease;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            min-height: 50px;
         }
 
         .gas_btn:hover {
-            background: #e55a00;
+            background: #E6CA00;
             transform: translateY(-1px);
         }
 
         .gas_btn_secondary {
             background: #ffffff;
-            color: #ff6900;
-            border: 1px solid #ff6900;
+            color: #FCE000;
+            border: 1px solid #FCE000;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
         }
 
         .gas_btn_secondary:hover {
-            background: #fff5f0;
+            background: #FFFDF0;
         }
 
         .gas_header {
@@ -89,18 +94,37 @@
         }
 
         .gas_temperature_card {
-            background: #fff5f0;
-            border: 1px solid #ff6900;
-        }
-
-        .gas_price_card {
-            background: #f0fff4;
-            border: 1px solid #22c55e;
+            background: #FFFDF0;
+            border: 1px solid #FCE000;
         }
 
         .gas_volume_card {
             background: #f0f9ff;
             border: 1px solid #3b82f6;
+        }
+
+        .gas_cart {
+            background: #FCE000;
+            color: #000000;
+        }
+
+        .gas_cart:hover {
+            background: #E6CA00;
+        }
+
+        /* Фиксированные размеры для картинок */
+        .gas-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Логотип в хедере */
+        .header-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -109,14 +133,14 @@
         <!-- Header -->
         <header class="gas_header w-full h-[164px] translate-y-[-1rem] animate-fade-in opacity-0">
             <div class="container mx-auto px-8 py-8 flex items-center gap-4">
-                <button class="gas_btn_secondary w-[50px] h-[50px] rounded-lg shadow-md flex items-center justify-center">
-                    <span class="text-xl">←</span>
+                <button class="gas_btn_secondary w-[65px] h-[65px] rounded-lg shadow-md flex items-center justify-center">
+                    <span class="text-2xl">🏠</span>
                 </button>
                 <h1 class="text-4xl font-bold gas_text_primary tracking-[-0.70px] font-['Inter',Helvetica]">
                     AtmosphericTempCalc
                 </h1>
                 <img
-                    class="w-[110px] h-[110px] object-cover"
+                    class="header-logo"
                     alt="AtmosphereTemp Logo"
                     src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-4.png"
                 />
@@ -127,33 +151,18 @@
         <section class="w-full py-8 translate-y-[-1rem] animate-fade-in opacity-0" style="--animation-delay: 200ms;">
             <div class="container mx-auto px-8">
                 <div class="max-w-4xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                         <!-- Temperature Result -->
                         <div class="gas_temperature_card rounded-xl">
                             <div class="p-6 text-center">
                                 <h3 class="text-lg font-semibold gas_text_primary mb-2">
                                     Расчетная температура
                                 </h3>
-                                <div class="text-4xl font-bold text-[#ff6900] mb-2">
+                                <div class="text-4xl font-bold text-[#dff0a5] mb-2">
                                     15.2°C
                                 </div>
                                 <p class="text-sm gas_text_secondary">
                                     На основе выбранных газов
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Total Price -->
-                        <div class="gas_price_card rounded-xl">
-                            <div class="p-6 text-center">
-                                <h3 class="text-lg font-semibold gas_text_primary mb-2">
-                                    Общая стоимость
-                                </h3>
-                                <div class="text-4xl font-bold text-green-600 mb-2">
-                                    ₽9,500
-                                </div>
-                                <p class="text-sm gas_text_secondary">
-                                    За выбранные газы
                                 </p>
                             </div>
                         </div>
@@ -182,7 +191,7 @@
             <div class="container mx-auto px-8">
                 <div class="max-w-6xl mx-auto">
                     <h2 class="text-3xl font-bold gas_text_primary mb-8 text-center">
-                        Состав атмосферного воздуха (1 м³)
+                        Состав атмосферного воздуха (1 м³) - 5 элементов
                     </h2>
 
                     <div class="grid grid-cols-1 gap-6">
@@ -192,7 +201,7 @@
                                 <!-- Image Section -->
                                 <div class="flex-shrink-0">
                                     <img
-                                        class="w-[120px] h-[120px] object-cover rounded-lg"
+                                        class="gas-image"
                                         alt="CO₂ (Углекислый газ)"
                                         src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-5.png"
                                     />
@@ -210,9 +219,6 @@
                                         <p class="text-sm gas_text_secondary">
                                             <span class="font-medium">Температура:</span> 15°C
                                         </p>
-                                        <p class="text-sm gas_text_secondary">
-                                            <span class="font-medium">Цена за 1 м³:</span> ₽2,500
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +230,7 @@
                                 <!-- Image Section -->
                                 <div class="flex-shrink-0">
                                     <img
-                                        class="w-[120px] h-[120px] object-cover rounded-lg"
+                                        class="gas-image"
                                         alt="O₂ (Кислород)"
                                         src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-12.png"
                                     />
@@ -242,9 +248,6 @@
                                         <p class="text-sm gas_text_secondary">
                                             <span class="font-medium">Температура:</span> 15°C
                                         </p>
-                                        <p class="text-sm gas_text_secondary">
-                                            <span class="font-medium">Цена за 1 м³:</span> ₽1,800
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +259,7 @@
                                 <!-- Image Section -->
                                 <div class="flex-shrink-0">
                                     <img
-                                        class="w-[120px] h-[120px] object-cover rounded-lg"
+                                        class="gas-image"
                                         alt="Ar (Аргон)"
                                         src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-13.png"
                                     />
@@ -274,9 +277,6 @@
                                         <p class="text-sm gas_text_secondary">
                                             <span class="font-medium">Температура:</span> 15°C
                                         </p>
-                                        <p class="text-sm gas_text_secondary">
-                                            <span class="font-medium">Цена за 1 м³:</span> ₽3,200
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -288,7 +288,7 @@
                                 <!-- Image Section -->
                                 <div class="flex-shrink-0">
                                     <img
-                                        class="w-[120px] h-[120px] object-cover rounded-lg"
+                                        class="gas-image"
                                         alt="N₂ (Азот)"
                                         src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-14.png"
                                     />
@@ -306,9 +306,6 @@
                                         <p class="text-sm gas_text_secondary">
                                             <span class="font-medium">Температура:</span> 15°C
                                         </p>
-                                        <p class="text-sm gas_text_secondary">
-                                            <span class="font-medium">Цена за 1 м³:</span> ₽1,200
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -320,7 +317,7 @@
                                 <!-- Image Section -->
                                 <div class="flex-shrink-0">
                                     <img
-                                        class="w-[120px] h-[120px] object-cover rounded-lg"
+                                        class="gas-image"
                                         alt="H₂O (Водяной пар)"
                                         src="https://c.animaapp.com/mfi4rqisUqRMxb/img/image-15.png"
                                     />
@@ -338,9 +335,6 @@
                                         <p class="text-sm gas_text_secondary">
                                             <span class="font-medium">Температура:</span> 15°C
                                         </p>
-                                        <p class="text-sm gas_text_secondary">
-                                            <span class="font-medium">Цена за 1 м³:</span> ₽800
-                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -349,13 +343,28 @@
 
                     <!-- Calculate Button -->
                     <div class="flex justify-center mt-12">
-                        <button class="gas_btn w-[300px] h-[60px] text-lg font-semibold">
+                        <button class="gas_btn w-[380px] h-[75px] text-xl font-semibold">
                             Завершить расчет температуры
                         </button>
                     </div>
                 </div>
             </div>
         </main>
+
+        <!-- Shopping Cart - Fixed Position -->
+        <div class="fixed bottom-6 right-6 z-50">
+            <div class="relative">
+                <!-- Cart Icon -->
+                <div class="gas_cart w-[80px] h-[80px] rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex items-center justify-center hover:scale-110">
+                    <span class="text-3xl">🛒</span>
+                </div>
+
+                <!-- Cart Count Badge -->
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg animate-pulse">
+                    5
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -364,8 +373,12 @@
             alert('Возврат на главную страницу');
         });
 
-        document.querySelector('.bg-\\[\\#dff0a5\\]').addEventListener('click', function() {
-            alert('Расчет завершен!\nИтоговая температура: 15.2°C\nОбщая стоимость за 1 м³ воздуха: ₽9,500');
+        document.querySelector('.gas_cart').addEventListener('click', function() {
+            alert('Переход на главную страницу');
+        });
+
+        document.querySelector('.w-\\[330px\\]').addEventListener('click', function() {
+            alert('Расчет завершен!\nИтоговая температура: 15.2°C');
         });
     </script>
 </body>
